@@ -6,7 +6,7 @@ import Options from '../components/tabs/Options/Options'
 //xd sxws
 import Results from '../components/tabs/Results/Results'
 function Generator() {
-  const [active, setActive] = useState(2)
+  const [active, setActive] = useState(3)
   const renderActiveTap = ()=>{
     switch(active){
       case 1:return<AddCourses/>

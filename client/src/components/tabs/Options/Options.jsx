@@ -7,7 +7,7 @@ function Options() {
   return (
 
     <TabLayout>
-        <div>
+        <div className="mt-3">
             <DaysFilter/>
             <MinimumFilter/>
             <TimeRange/>

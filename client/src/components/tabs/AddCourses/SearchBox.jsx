@@ -3,7 +3,7 @@ import React from 'react'
 function SearchBox() {
     return (
 
-        <div className=" max-w-sm mb-2">
+        <div className="max-w-sm  mb-2">
             <h1>Add courses</h1>
             <div className="">
                 <input
