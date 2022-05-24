@@ -9,6 +9,7 @@ function Results() {
     { days: "WED", startTime: 8.5, endTime: 10 },
     { days: "THU", startTime: 8.5, endTime: 10 }
   ]
+  
   return (
     <div className="text-white  sm:ml-10 md:ml-26 lg:ml-60  sm:mr-10 md:mr-26 lg:mr-60 ">
       <div className="flex ">
@@ -28,27 +29,27 @@ function Results() {
         <div className=" text-white bg-mylight  border-2 border-mydark  text-center pt-2 px-1 mt-5 ">
           <h1 className='mb'>time</h1>
           <div className=" text-sm">
-            <h1 className="h-6 border">8:30</h1>
-            <h1 className="h-6 border">9:00</h1>
-            <h1 className="h-6 border">9:30</h1>
-            <h1 className="h-6 border">10:00</h1>
-            <h1 className="h-6 border">10:30</h1>
-            <h1 className="h-6 border">11:00</h1>
-            <h1 className="h-6 border">11:30</h1>
-            <h1 className="h-6 border">12:00</h1>
-            <h1 className="h-6 border">12:30</h1>
-            <h1 className="h-6 border">13:00</h1>
-            <h1 className="h-6 border">13:30</h1>
-            <h1 className="h-6 border">14:00</h1>
-            <h1 className="h-6 border">14:30</h1>
-            <h1 className="h-6 border">15:00</h1>
-            <h1 className="h-6 border">15:30</h1>
-            <h1 className="h-6 border">16:00</h1>
-            <h1 className="h-6 border">16:30</h1>
-            <h1 className="h-6 border">17:00</h1>
-            <h1 className="h-6 border">17:30</h1>
-            <h1 className="h-6 border">18:00</h1>
-            <h1 className="h-6 border">18:30</h1>
+            <h1 className="h-6 ">8:30</h1>
+            <h1 className="h-6 ">9:00</h1>
+            <h1 className="h-6 ">9:30</h1>
+            <h1 className="h-6 ">10:00</h1>
+            <h1 className="h-6 ">10:30</h1>
+            <h1 className="h-6 ">11:00</h1>
+            <h1 className="h-6 ">11:30</h1>
+            <h1 className="h-6 ">12:00</h1>
+            <h1 className="h-6 ">12:30</h1>
+            <h1 className="h-6 ">13:00</h1>
+            <h1 className="h-6 ">13:30</h1>
+            <h1 className="h-6 ">14:00</h1>
+            <h1 className="h-6 ">14:30</h1>
+            <h1 className="h-6 ">15:00</h1>
+            <h1 className="h-6 ">15:30</h1>
+            <h1 className="h-6 ">16:00</h1>
+            <h1 className="h-6 ">16:30</h1>
+            <h1 className="h-6 ">17:00</h1>
+            <h1 className="h-6 ">17:30</h1>
+            <h1 className="h-6 ">18:00</h1>
+            <h1 className="h-6 ">18:30</h1>
           </div>
         </div>
         <Day />
@@ -56,6 +57,7 @@ function Results() {
         <Day />
         <Day />
         <Day />
+      
       </div>
     </div>
   )
