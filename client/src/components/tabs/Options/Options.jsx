@@ -11,6 +11,7 @@ function Options() {
             <DaysFilter/>
             <MinimumFilter/>
             <TimeRange/>
+            <h1 className="text-right mt-7">Continue to results</h1>
         </div>
     </TabLayout>
   )

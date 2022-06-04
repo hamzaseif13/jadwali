@@ -3,15 +3,14 @@ import React, {useContext } from 'react'
 import JadwaliContext from '../../../context/JadwaliContext';
 
 function DaysFilter() {
-    const { options, setOptions } = useContext(JadwaliContext)
-    const { sun, mon, tue, wed, thu } = options
+    const { sun, mon, tue, wed, thu ,dispatch } = useContext(JadwaliContext)
     const handleClick = (num) => {
         switch (num) {
-            case 1: setOptions(prev => { return { ...prev, sun: !sun } }); break;
-            case 2: setOptions(prev => { return { ...prev, mon: !mon } }); break;
-            case 3: setOptions(prev => { return { ...prev, tue: !tue } }); break;
-            case 4: setOptions(prev => { return { ...prev, wed: !wed } }); break;
-            case 5: setOptions(prev => { return { ...prev, thu: !thu } }); break;
+            case 1: dispatch({type:"SET_SUN",payload:!sun}); break;
+            case 2: dispatch({type:"SET_MON",payload:!mon}); break;
+            case 3: dispatch({type:"SET_TUE",payload:!tue}); break;
+            case 4: dispatch({type:"SET_WED",payload:!wed}); break;
+            case 5: dispatch({type:"SET_THU",payload:!thu}); break;
             default:;
         }
     }
