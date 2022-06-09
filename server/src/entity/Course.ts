@@ -1,18 +1,23 @@
-import { Entity, Column ,PrimaryColumn, ManyToMany, OneToMany} from "typeorm";
-import {Section} from './Section'
-@Entity({name:"courses"})
-export class Course{
-    @Column()
-    name:string;
-    @PrimaryColumn()
-    lineNumber:number
-    @Column()
-    symbol:string;
-    @Column()
-    creditHour:number
-    @Column()
-    departmentName:string;
-    @OneToMany()
-    sections:Section
+import { Column,Entity ,OneToMany,PrimaryColumn} from "typeorm";
+import { Section } from "./Section";
 
+@Entity()
+export class Course {
+    @PrimaryColumn({name:"line_number"})
+    lineNumber:number
+    @Column({name:"credit_hours"})
+    creditHours:number
+    @Column()
+    name:string
+    @Column()
+    department:string
+    @Column ()
+    faculty:string
+    @Column ()
+    symbol:string
+
+    @OneToMany(()=>Section,section=>section.course,{onDelete:"CASCADE"})
+    sections:Section[]
+
+   
 }

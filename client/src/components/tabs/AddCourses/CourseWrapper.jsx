@@ -6,7 +6,7 @@ function CourseWrapper() {
 
   return (
     <div className="lg:mt-6">
-      {registeredCourses.length>0&&registeredCourses.map(course=><Course key={course.symbol}name={course.name} symbol={course.symbol} hours={course.hours}/>)}
+      {registeredCourses.length>0&&registeredCourses.map(course=><Course key={course.symbol}course ={course}/>)}
     </div>
   )
 }

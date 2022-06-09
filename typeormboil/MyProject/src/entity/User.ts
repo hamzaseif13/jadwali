@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
-@Entity({name:"users"})
+@Entity()
 export class User {
 
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column()
-    firstName: string  
+    firstName: string
 
     @Column()
     lastName: string
