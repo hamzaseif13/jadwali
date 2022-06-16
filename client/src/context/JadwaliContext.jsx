@@ -10,7 +10,7 @@ export const  JadwaliProvider = ({children})=> {
     endTime:18.5,
     generatedSchedules:[],
     registeredCourses:[],
-    sun:true,mon:true,tue:true,wed:true,thu:true
+    days:"Sun Mon Tue Wed Thu"
    }
     const [state,dispatch] = useReducer(JadwaliReducer,initialState)
   return (

@@ -1,15 +1,15 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import TabLayout from '../TabLayout'
 import Day from './Day'
+import JadwaliContext from '../../../context/JadwaliContext'
 function Results() {
-  const arr = [
-    { days: "SUN TUE", startTime: 8.5, endTime: 10 },
-    { days: "SUN TUE", startTime: 10, endTime: 11.5 },
-    { days: "MON", startTime: 8.5, endTime: 10 },
-    { days: "WED", startTime: 8.5, endTime: 10 },
-    { days: "THU", startTime: 8.5, endTime: 10 }
-  ]
-  
+  const {generatedSchedules} = useContext(JadwaliContext)
+  const schedule= generatedSchedules[0]
+  const sunDay=schedule.filter((section)=>section.days.includes("Sun"))
+  const monDay=schedule.filter((section)=>section.days.includes("Mon"))
+  const tueDay=schedule.filter((section)=>section.days.includes("Tue"))
+  const wedDay=schedule.filter((section)=>section.days.includes("Wed"))
+  const thuDay=schedule.filter((section)=>section.days.includes("Thu"))
   return (
     <div className="text-white  sm:ml-10 md:ml-26 lg:ml-60  sm:mr-10 md:mr-26 lg:mr-60 ">
       <div className="flex ">
@@ -52,11 +52,12 @@ function Results() {
             <h1 className="h-6 ">18:30</h1>
           </div>
         </div>
-        <Day />
-        <Day />
-        <Day />
-        <Day />
-        <Day />
+        
+        <Day sections={sunDay}/>
+        <Day sections={monDay}/>
+        <Day sections={tueDay}/>
+        <Day sections={wedDay}/>
+        <Day sections={thuDay}/>
       
       </div>
     </div>

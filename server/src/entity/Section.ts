@@ -7,9 +7,9 @@ export class Section {
   id:string
   @Column()
   number: number;
-  @Column({ name: "start_time" ,nullable:true})
+  @Column({ name: "start_time" ,nullable:true,type:"double"})
   startTime: number;
-  @Column({ name: "end_time" ,nullable:true})
+  @Column({ name: "end_time" ,nullable:true,type:"double"})
   endTime: number;
   @Column({nullable:true})
   days: string;

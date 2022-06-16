@@ -4,27 +4,23 @@ import { Section } from "./entity/Section";
 import cors from 'cors'
 import express, { Express } from "express";
 
+import {searchController} from './controller/searchController';
+import { generateController } from "./controller/generateController";
+
 AppDataSource.initialize()
   .then(() => {console.log("db connected")})
   .catch((err) => console.log(err));
 
 const app: Express = express();
-
+const PORT=process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.get("/search", async (req, res) => {
-  try{
-    const query=req.query.query
-    const courseRepo = AppDataSource.getRepository(Course);
-    const courses= await courseRepo.createQueryBuilder("course").select("course").where(`course.name like '%${query}%' or course.symbol like '%${query}%' `).getMany()
-    res.json(courses)
-  }catch(error:any){
-    res.status(505).json({errorm: error.message})
-  }
-    
-});
 
+app.use(searchController)
+app.use(generateController)
+
+app.listen(PORT, () => console.log(`server running on port ${PORT}`));
 /*
 async function add() {
   const courseRepo = AppDataSource.getRepository(Course);
@@ -33,7 +29,7 @@ async function add() {
   
   const courses = await mongoCourse.find();
   
-  courses.forEach(async(course) =>{
+  courses.forEach(async(course:any) =>{
       
         const sCourse = new Course();
         sCourse.name = course.name;
@@ -70,6 +66,6 @@ async function add() {
    
  
 
-}*/
+}
 
-app.listen(5000, () => console.log("server running"));
+*/

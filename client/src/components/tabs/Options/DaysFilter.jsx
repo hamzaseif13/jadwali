@@ -3,35 +3,33 @@ import React, {useContext } from 'react'
 import JadwaliContext from '../../../context/JadwaliContext';
 
 function DaysFilter() {
-    const { sun, mon, tue, wed, thu ,dispatch } = useContext(JadwaliContext)
-    const handleClick = (num) => {
-        switch (num) {
-            case 1: dispatch({type:"SET_SUN",payload:!sun}); break;
-            case 2: dispatch({type:"SET_MON",payload:!mon}); break;
-            case 3: dispatch({type:"SET_TUE",payload:!tue}); break;
-            case 4: dispatch({type:"SET_WED",payload:!wed}); break;
-            case 5: dispatch({type:"SET_THU",payload:!thu}); break;
-            default:;
-        }
+    const { days,dispatch } = useContext(JadwaliContext)
+    const handleClick = (day) => {
+       if(days.includes(day)){
+           dispatch({type:"SET_DAYS",payload:days.replace(day, "")})
+       }
+       else{
+        dispatch({type:"SET_DAYS",payload:days+" "+day})
+       }
     }
     return (
         <>
             <h1 className="text-lg mb-2">Select Days</h1>
             <div className="flex items-center flex-wrap">
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick(1)} className={`rounded border p-2 ${sun ? 'bg-blue-500' : ''}`}>Sunday</button>
+                    <button onClick={() => handleClick("Sun")} className={`rounded border p-2 ${days.includes("Sun") ? 'bg-blue-500' : ''}`}>Sunday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick(2)} className={`rounded border p-2 ${mon ? 'bg-blue-500' : ''}`}>Monday</button>
+                    <button onClick={() => handleClick("Mon")} className={`rounded border p-2 ${days.includes("Mon") ? 'bg-blue-500' : ''}`}>Monday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick(3)} className={`rounded border p-2 ${tue ? 'bg-blue-500' : ''}`}>Tuesday</button>
+                    <button onClick={() => handleClick("Tue")} className={`rounded border p-2 ${days.includes("Tue") ? 'bg-blue-500' : ''}`}>Tuesday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick(4)} className={`rounded border p-2 ${wed ? 'bg-blue-500' : ''}`}>wedesday</button>
+                    <button onClick={() => handleClick("Wed")} className={`rounded border p-2 ${days.includes("Wed") ? 'bg-blue-500' : ''}`}>wedesday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick(5)} className={`rounded border p-2 ${thu ? 'bg-blue-500' : ''}`}>thursday</button>
+                    <button onClick={() => handleClick("Thu")} className={`rounded border p-2 ${days.includes("Thu") ? 'bg-blue-500' : ''}`}>thursday</button>
                 </div>
             </div>
         </>

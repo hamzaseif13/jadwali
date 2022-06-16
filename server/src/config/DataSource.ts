@@ -16,3 +16,6 @@ export const AppDataSource = new DataSource({
     subscribers: [],
     migrations: [],
 })
+export const sectionRepo=AppDataSource.getRepository(Section)
+export const courseRepo=AppDataSource.getRepository(Course)
+

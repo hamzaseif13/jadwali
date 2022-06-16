@@ -15,21 +15,11 @@
         case "SET_REG": return {
             ...state, registeredCourses: action.payload
         }
-        case "SET_SUN": return {
-            ...state, sun: action.payload
+        case "SET_DAYS": return {
+            ...state, days: action.payload
         }
-        case "SET_MON": return {
-            ...state, mon: action.payload
-        }
-        case "SET_TUE": return {
-            ...state, tue: action.payload
-        }
-        case "SET_WED": return {
-            ...state, wed: action.payload
-        }
-        case "SET_THU":return{
-            ...state,thu:action.payload
-        }
+        default:;
+       
     }
 }
 export default JadwaliReducer

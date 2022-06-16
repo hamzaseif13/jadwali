@@ -1,12 +1,13 @@
-import React,{useEffect} from 'react'
-
-function Section({ section}) {
- 
+import React,{ useContext} from 'react'
+import JadwaliContext from '../../../context/JadwaliContext'
+function Section({ section,index}) {
+  const {registeredCourses} = useContext(JadwaliContext)
   let { startTime, endTime} = section
+  
     return (
      
-        <div className={`absolute start${startTime*10}  w-full bg-gray-500 border-l-4 border rounded-t rounded-l  height${(endTime-startTime)*10} text-left px-1 overflow-clip text-ellipsis md:text-base border-${section.color}-500`}>
-          <h1 className="text-xs">{section.name.substring(0,10)}</h1>
+        <div className={`absolute start${startTime*10}  w-full bg-gray-500 border-l-8 border rounded-t rounded-l  height${(endTime-startTime)*10} text-left px-1 overflow-clip text-ellipsis md:text-base border-red-500 border-y-0 border-r-0`}>
+          <h1 className="text-xs">{registeredCourses[index].name}</h1>
           <h1 className="text-[0.6rem] sm:text-xs text-center" >{section.startTime} - {section.endTime}</h1>
         </div>
 
