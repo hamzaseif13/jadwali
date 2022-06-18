@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
 import Generator from './pages/Generator';
 import { JadwaliProvider } from './context/jadwaliContext/JadwaliContext'
+import Xd from './pages/Xd';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Generator />} />
+            <Route path='/lol' excat element={<Xd />} />
           </Routes>
         </Router>
         <Footer />

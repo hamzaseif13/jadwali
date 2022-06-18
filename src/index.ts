@@ -3,24 +3,26 @@ import { Course } from "./entity/Course";
 import { Section } from "./entity/Section";
 import cors from 'cors'
 import express, { Express } from "express";
-import mongoose from "mongoose";
+
 import {searchController} from './controller/searchController';
 import { generateController } from "./controller/generateController";
-import mongoCourse from './mongoCourse'
+
 AppDataSource.initialize()
   .then(() => {console.log("db connected")})
   .catch((err) => console.log(err));
 
-const app: Express = express();
-const PORT=process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static("client/build"))
-}
+
+
+const app: Express = express();
+const PORT=process.env.PORT || 5050;
+app.use(cors())
 app.use(searchController)
 app.use(generateController)
+app.use(express.json());
+
+
+
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
 
