@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import JadwaliContext from '../../../context/JadwaliContext'
+import JadwaliContext from '../../../context/jadwaliContext/JadwaliContext'
 function Course({course }) {
   const {dispatch, registeredCourses} = useContext(JadwaliContext);
   const removeCourse=()=>{

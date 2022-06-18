@@ -10,8 +10,12 @@ export const  JadwaliProvider = ({children})=> {
     endTime:18.5,
     generatedSchedules:[],
     registeredCourses:[],
-    days:"Sun Mon Tue Wed Thu"
+    colors:["border-red-500","border-blue-500","border-green-500","border-yellow-500","border-cyan-500","border-white-500","border-orange-500"],
+    days:"Sun Mon Tue Wed Thu",loading:false,
+    activeTab:1,
+   
    }
+   
     const [state,dispatch] = useReducer(JadwaliReducer,initialState)
   return (
     <JadwaliContext.Provider value={{...state,dispatch}}>

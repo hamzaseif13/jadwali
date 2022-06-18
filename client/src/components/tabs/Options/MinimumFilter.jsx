@@ -1,6 +1,6 @@
 import React, {  useContext } from 'react'
 
-import JadwaliContext from '../../../context/JadwaliContext';
+import JadwaliContext from '../../../context/jadwaliContext/JadwaliContext';
 
 function MinimumFilter() {
    const {minNumberOfDays,dispatch}= useContext(JadwaliContext);

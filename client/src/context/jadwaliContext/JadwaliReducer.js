@@ -18,6 +18,13 @@
         case "SET_DAYS": return {
             ...state, days: action.payload
         }
+        case "SET_ACTIVE_TAB":return{
+            ...state, activeTab: action.payload
+        }
+        case "SET_LOADING":return{
+            ...state, loading: action.payload
+        }
+        
         default:;
        
     }

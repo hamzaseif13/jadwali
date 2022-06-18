@@ -3,7 +3,7 @@ import './App.css';
 import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
 import Generator from './pages/Generator';
-import { JadwaliProvider } from './context/JadwaliContext'
+import { JadwaliProvider } from './context/jadwaliContext/JadwaliContext'
 
 
 function App() {

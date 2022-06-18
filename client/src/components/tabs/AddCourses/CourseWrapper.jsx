@@ -1,6 +1,6 @@
 import React,{useContext}from 'react'
 import Course from './Course'
-import JadwaliContext from '../../../context/JadwaliContext'
+import JadwaliContext from '../../../context/jadwaliContext/JadwaliContext'
 function CourseWrapper() {
   const {dispatch, registeredCourses} = useContext(JadwaliContext);
 

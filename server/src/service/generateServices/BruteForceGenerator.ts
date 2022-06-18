@@ -83,20 +83,16 @@ export class BruteForceGenerator {
   }
 
   public generate(sections: Section[][]) {
-    console.log(this.options.days)
     var generatedSchedules = this.cartesianProduct(sections);
     var filteredSchedules: Section[][] = [];
-
     generatedSchedules.forEach((sch: Section[]) => {
       if (this.noConflicts(sch)&&this.filterTime(sch)&&this.filterDays(sch)) {filteredSchedules.push(sch);
     }});
-
     return filteredSchedules;
   }
   public get sections() {
     return this._sections;
   }
-
   public set sections(sections: Section[][]) {
     this._sections = sections;
   }

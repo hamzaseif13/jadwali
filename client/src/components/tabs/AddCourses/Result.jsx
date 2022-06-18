@@ -1,12 +1,13 @@
 import React,{useContext} from "react";
 
-import JadwaliContext from "../../../context/JadwaliContext";
+import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 
 function Result({result,clearInput}) {
    
- const {dispatch,registeredCourses}= useContext(JadwaliContext)
+ const {dispatch,registeredCourses,colors}= useContext(JadwaliContext)
  const addCourse = (res) => {
-    dispatch({ type: 'SET_REG', payload: [...registeredCourses,res] })
+    if(!registeredCourses.filter((course)=>course.lineNumber===res.lineNumber).length>0)
+    dispatch({ type: 'SET_REG', payload: [...registeredCourses,{...res,color:colors[registeredCourses.length]}] })
     clearInput()
 }
   return (

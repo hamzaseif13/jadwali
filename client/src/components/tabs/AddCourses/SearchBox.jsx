@@ -10,11 +10,10 @@ function SearchBox() {
     const searchCourses = async (signal) => {
         setTimeout(async()=>{
             if (searchQuery.length < 2) return
-            const res = await fetch(`http://192.168.1.13:5000/api/v1/search?query=${searchQuery}` )
+            const res = await fetch(`http://192.168.1.13:5000/api/v1/search?query=${searchQuery}`, {signal})
             const courses = await res.json();
-            setResults(courses.slice(0,10))
+            setResults(courses)
         },200)
-        
     }
     
     const onInputChange = (event) => {

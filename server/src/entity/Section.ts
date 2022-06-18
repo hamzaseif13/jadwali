@@ -31,6 +31,11 @@ export class Section {
   @Column({ name: "teaching_type" ,nullable:true})
   teachingType: string;
 
+
+  @Column({name:"course_symbol"})
+  courseSymbol: string;
+
+
   @Index("idx_line_number")
   @ManyToOne(() => Course, (course) => course.sections)
   @JoinColumn({ name: "line_number" })

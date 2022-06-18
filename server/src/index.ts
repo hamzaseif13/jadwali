@@ -3,10 +3,10 @@ import { Course } from "./entity/Course";
 import { Section } from "./entity/Section";
 import cors from 'cors'
 import express, { Express } from "express";
-
+import mongoose from "mongoose";
 import {searchController} from './controller/searchController';
 import { generateController } from "./controller/generateController";
-
+import mongoCourse from './mongoCourse'
 AppDataSource.initialize()
   .then(() => {console.log("db connected")})
   .catch((err) => console.log(err));
@@ -21,7 +21,15 @@ app.use(searchController)
 app.use(generateController)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+
+
 /*
+const dbUrl =
+  "mongodb+srv://hamzaseif:125369325147@unischedulercluster.fhjnr.mongodb.net/uniSchedulerDb?retryWrites=true&w=majority";
+mongoose
+  .connect(dbUrl)
+  .then(() => {console.log("db connected");add()})
+  .catch((err) => console.log(err));
 async function add() {
   const courseRepo = AppDataSource.getRepository(Course);
   const sectionRepo = AppDataSource.getRepository(Section);
@@ -56,6 +64,7 @@ async function add() {
             section.seatCount=course.sections[i].seatCount
             section.teachingType=course.sections[i].teachingType
             section.course=course
+            section.courseSymbol=course.symbol
               await sectionRepo.save(section)
         }
       
