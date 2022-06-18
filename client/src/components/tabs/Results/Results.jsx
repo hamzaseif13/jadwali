@@ -27,7 +27,7 @@ function Results() {
   }
   return (
     <div className="text-white  sm:ml-10 md:ml-26 lg:ml-60  sm:mr-10 md:mr-26 lg:mr-60 ">
-      <div className="flex ">
+      <div className="flex mt-3">
         <div className="flex justify-center items-center mt-2 border w-fit rounded border-mylight">
           <div className="inline  py-1 px-2 ">Schedule</div>
           <div className='pl-2 py-1 border border-mylight font-normal text-blue-500  transition ease-in-out  m-0  bg-mylight w-20 '> {index+1}</div>
