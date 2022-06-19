@@ -10,7 +10,7 @@ function SearchBox() {
     const searchCourses = async (signal) => {
         setTimeout(async()=>{
             if (searchQuery.length < 2) return
-            const res = await fetch(`/api/v1/search?query=${searchQuery}`, {signal})
+            const res = await fetch(`http://192.168.1.13:5050/api/v1/search?query=${searchQuery}`, {signal})
             const courses = await res.json();
             setResults(courses)
         },200)

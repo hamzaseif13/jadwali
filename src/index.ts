@@ -16,10 +16,11 @@ AppDataSource.initialize()
 
 const app: Express = express();
 const PORT=process.env.PORT || 5050;
+app.use(express.json());
 app.use(cors())
 app.use(searchController)
 app.use(generateController)
-app.use(express.json());
+
 
 
 
