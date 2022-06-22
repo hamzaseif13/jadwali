@@ -21,7 +21,7 @@ function Options() {
   });
   const generate = async () => {
     dispatch({type:"SET_LOADING",payload:true})
-    const res = await fetch("http://192.168.1.13:5050/api/v1/generate", {
+    const res = await fetch("/api/v1/generate", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
