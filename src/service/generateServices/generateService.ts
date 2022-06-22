@@ -4,7 +4,6 @@ import { BruteForceGenerator } from "./BruteForceGenerator";
 import { Section } from "../../entity/Section";
 
 const generateService = async (req: Request, res: Response) => {
-  console.log(req.body.options)
   const generator = new BruteForceGenerator(req.body.options);
 
   try {
