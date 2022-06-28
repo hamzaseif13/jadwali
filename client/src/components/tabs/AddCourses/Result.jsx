@@ -13,7 +13,7 @@ function Result({result,clearInput}) {
   return (
     <h1
       onClick={() => addCourse(result)}
-      className=" p-1 border-x-0 border-t-0 hover:cursor-pointer pb-2 hover:border-x hover:bg-mydark text-sm"
+      className=" p-1 border-x-0 border-t-0 hover:cursor-pointer pb-2 hover:border-x text-base hover:bg-mydark "
     >
       {result.name}
     </h1>

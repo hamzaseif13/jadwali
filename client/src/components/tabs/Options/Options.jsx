@@ -6,6 +6,7 @@ import TimeRange from "./TimeRange";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import { useContext } from "react";
 import Loading from "../../layout/Loading";
+import {fetchSchedules} from '../../../context/jadwaliContext/JadwaliActions'
 function Options() {
   const {
     registeredCourses,
@@ -21,20 +22,10 @@ function Options() {
   });
   const generate = async () => {
     dispatch({type:"SET_LOADING",payload:true})
-    const res = await fetch("/api/v1/generate", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        options: { courses, minNumberOfDays, startTime, endTime, days },
-      }),
-    });
-    const schedules = await res.json();
+    const schedules = await fetchSchedules(registeredCourses.map(c=>c.lineNumber),minNumberOfDays, startTime, endTime, days);
     dispatch({ type: "SET_GEN", payload: schedules });
     dispatch({type:"SET_LOADING",payload:false})
     dispatch({type:"SET_ACTIVE_TAB",payload:3})
-   
   };
   if(loading)return <Loading />;
   return (

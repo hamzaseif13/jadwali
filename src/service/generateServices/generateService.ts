@@ -1,21 +1,22 @@
 import { sectionRepo, courseRepo } from "../../config/DataSource";
 import { Request, Response } from "express";
-import { BruteForceGenerator } from "./BruteForceGenerator";
+import { BruteForceGenerator, Generator } from "./BruteForceGenerator";
 import { Section } from "../../entity/Section";
+import { GeneticGenerator } from "./GeneticGenerator";
 
 const generateService = async (req: Request, res: Response) => {
-  const generator = new BruteForceGenerator(req.body.options);
-
+  const options:Options=req.body.options;
+  let generationType ="brute"//genetic//brute
+  const generator =
+  generationType=="brute"?new BruteForceGenerator(options):new GeneticGenerator(options)
   try {
-    generator.fetchSections().then((sections:Section[][])=>{
-      res.json(generator.generate(sections))
-    })
+    generator.generate().then((result) => res.json(result));
   } catch (error) {
-    res.json(error);
+    res.json(error)
   }
 };
 
-export { generateService ,Options};
+export { generateService, Options };
 
 interface Options {
   startTime: number;
