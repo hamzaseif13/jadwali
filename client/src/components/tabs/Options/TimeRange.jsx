@@ -12,7 +12,7 @@ function TimeRange() {
         }
     }
     return (
-        <div >
+        <div className='flex justify-center flex-col items-center'>
             <div className="mt-2">
                 <h1>Start time</h1>
                 <button className="rounded bg-blue-500 p-1 px-4 mr-2 ml-2 active:bg-mylight" onClick={()=>handleChange(1)}>-</button>

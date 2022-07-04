@@ -24,7 +24,12 @@
         case "SET_LOADING":return{
             ...state, loading: action.payload
         }
-        
+        case "SET_INTENSIVE_SECTIONS":return{
+            ...state, intensiveSections: action.payload
+        }
+        case "SET_ACTIVE_SCHEDULE":return{
+            ...state, activeSchedule: action.payload
+        }
         default:;
        
     }

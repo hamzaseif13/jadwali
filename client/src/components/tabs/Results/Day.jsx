@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import SectionBox from "./SectionBox";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-function Day({ sections }) {
+import SmallSectionBox from "./SmallSectionBox";
+import BigSectionBox from "./BigSectionBox";
+function Day({ sections ,name,lastOne}) {
   const {registeredCourses} = useContext(JadwaliContext)
   
+  
   return (
-    <div className="text-base relative text-white bg-mylight w-52 border-2 border-mydark  text-center pt-2  mt-5 ">
-      <h1 className="mb-3">sun</h1>
+    <div className={`text-base relative ${lastOne&&" rounded-r-lg "}text-white bg-mylight w-52 border-2 border-x-[0.5px] border-mydark  text-center pt-2  mt-5 `}>
+      <h1 className="mb-3">{name}</h1>
       {
         sections.map(section=>{
-          return <SectionBox key={section.id} section={section}  index={registeredCourses.findIndex(ele=>ele.symbol===section.courseSymbol)}/>
+          const course = registeredCourses.find(ele=>ele.lineNumber===section.lineNumber)
+          if(section.endTime-section.startTime===1)
+          return <SmallSectionBox key={section.id} section={section} course={course}/>
+          return <BigSectionBox key={section.id} section={section} course={course}/>
         })
       }
     </div>

@@ -13,9 +13,9 @@ function DaysFilter() {
        }
     }
     return (
-        <>
-            <h1 className="text-lg mb-2">Select Days</h1>
-            <div className="flex items-center flex-wrap">
+        <div className="flex flex-col items-center justify-center">
+            <h1 className="text-lg mb-2">Select Days </h1>
+            <div className="flex items-center justify-center flex-wrap">
                 <div className="ml-2 mb-1">
                     <button onClick={() => handleClick("Sun")} className={`rounded border p-2 ${days.includes("Sun") ? 'bg-blue-500' : ''}`}>Sunday</button>
                 </div>
@@ -32,7 +32,7 @@ function DaysFilter() {
                     <button onClick={() => handleClick("Thu")} className={`rounded border p-2 ${days.includes("Thu") ? 'bg-blue-500' : ''}`}>thursday</button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

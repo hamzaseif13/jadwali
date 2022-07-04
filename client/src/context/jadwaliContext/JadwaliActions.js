@@ -1,6 +1,6 @@
 export const fetchSchedules = async (courses,minNumberOfDays, startTime, endTime, days ) => {
-  const res = await fetch("http://192.168.1.13:5050/api/v1/generate", {
-    method: "post",
+  const res = await fetch("/api/v1/generate", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
@@ -8,6 +8,8 @@ export const fetchSchedules = async (courses,minNumberOfDays, startTime, endTime
       options: { courses, minNumberOfDays, startTime, endTime, days },
     }),
   });
-  const schedules = await res.json();
-  return schedules;
+  
+  const results = await res.json();
+  console.log(results)
+  return results
 };

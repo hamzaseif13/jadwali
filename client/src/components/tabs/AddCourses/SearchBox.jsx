@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import Results from "./Results";
+import Results from "./SearchResultsWrapper";
 function SearchBox() {
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,7 +11,7 @@ function SearchBox() {
     setTimeout(async () => {
       if (searchQuery.length < 2) return;
       const res = await fetch(
-        `http://192.168.1.13:5050/api/v1/search?query=${searchQuery}`,
+        `/api/v1/search?query=${searchQuery}`,
         {
           signal,
         }
@@ -46,28 +46,27 @@ function SearchBox() {
     setSearchQuery("");
   };
   return (
-    <div className="max-w-sm  mb-2">
-      <h1>Add courses</h1>
-      <div className="relative">
+    <div className="relative ">
+      <h1 className="text-white text-center">Search for your courses</h1>
+      <div className="w-full  flex justify-center relative">
         <input
-          autoComplete="off"
+          className="w-[95%] mt-1 mx-1 text-lg shadow-sm border outline-none max-w-[600px] text-blue-500 rounded rounded-b-none  bg-mylight p-2"
+          placeholder="cs101,calculas 1, 1378723"
           onChange={onInputChange}
           value={searchQuery}
-          className={
-            "min-w-full block pl-2 py-1.5 rounded-b-none text-base font-normal text-blue-500   border-solid border-gray-300  rounded transition ease-in-out  m-0   focus:border-white focus:outline-none bg-mylight"
-          }
-          id="exampleSearch"
-          placeholder="Search for course ex:CS101 ,Calculas"
         />
-        <span className="absolute top-[0.3rem] active:text-white text-blue-500 text-xl hover:cursor-pointer right-2">
-          {searchLoading ? (
-            <ClipLoader size={30} color="#ffffff" />
-          ) : (
-            <span onClick={clearInput}> &#10006;</span>
-          )}
-        </span>
-        {results && <Results clearInput={clearInput} results={results} />}
+        <div className="relative">
+          <div className="text-white absolute right-5 top-1/2 -translate-y-[35%]">
+            {
+              searchLoading?(
+                <ClipLoader size={30} color="#ffffff" />
+              ):
+              <span  className="cursor-pointer hover:text-red-500"onClick={clearInput}>&#10006;</span>
+            }
+          </div>
+        </div>
       </div>
+      {results&&<Results clearInput={clearInput} results={results} />}
     </div>
   );
 }

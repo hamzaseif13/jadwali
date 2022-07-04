@@ -8,12 +8,11 @@ export abstract class Generator {
   protected _sections: Section[][] = [];
   constructor(options: Options) {
     this.options = options;
-  } 
-
+  }
   /**
    * generates schedules
    */
-  public abstract generate(options: Options): Promise<Section[][]>;
+  public abstract generate(sections: Section[][]): Section[][];
 
   /**
    * checks if a schedule timing meets the user needs
@@ -31,7 +30,7 @@ export abstract class Generator {
   /** 
   returns a promise of query of the all sections
   */
-  protected fetchSections(courses: string[]): Promise<Section[][]> {
+  public static fetchSections(courses: string[]): Promise<Section[][]> {
     return Promise.all(
       courses.map((lineNumber: string) => {
         return sectionRepo
@@ -106,7 +105,6 @@ export abstract class Generator {
   }
 }
 
-
 export class BruteForceGenerator extends Generator {
   constructor(options: Options) {
     super(options);
@@ -137,13 +135,12 @@ export class BruteForceGenerator extends Generator {
    * @param sections sections to generate the schedules from
    * @returns a promise of final schedules
    */
-  public async generate(): Promise<Section[][]> {
-    const sections = await this.fetchSections(this.options.courses);
+  public generate(sections: Section[][]) {
     this._sections = sections;
     console.time();
-    const filteredSchedules: Section[][] = this.cartesianProduct(this._sections).filter(
-      (schedule) => this.scheduleIsValid(schedule)
-    );
+    const filteredSchedules: Section[][] = this.cartesianProduct(
+      this._sections
+    ).filter((schedule) => this.scheduleIsValid(schedule));
     console.timeEnd();
     return filteredSchedules;
   }

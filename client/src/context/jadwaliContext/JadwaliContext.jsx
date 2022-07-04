@@ -9,6 +9,7 @@ export const JadwaliProvider = ({ children }) => {
     endTime: 18.5,
     generatedSchedules: [],
     registeredCourses: [],
+    intensiveSections:[],
     colors: [
       "border-red-500",
       "border-blue-500",
@@ -21,6 +22,7 @@ export const JadwaliProvider = ({ children }) => {
     days: "Sun Mon Tue Wed Thu",
     loading: false,
     activeTab: 1,
+    activeSchedule:0,
   };
 
   const [state, dispatch] = useReducer(JadwaliReducer, initialState);

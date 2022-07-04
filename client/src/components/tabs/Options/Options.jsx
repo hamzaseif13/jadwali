@@ -1,5 +1,4 @@
 import React from "react";
-import TabLayout from "../TabLayout";
 import DaysFilter from "./DaysFilter";
 import MinimumFilter from "./MinimumFilter";
 import TimeRange from "./TimeRange";
@@ -29,21 +28,23 @@ function Options() {
   };
   if(loading)return <Loading />;
   return (
-    <TabLayout>
-      <div className="mt-3">
+    
+      <div className="mt-3   text-white ">
         <DaysFilter />
         <MinimumFilter />
         <TimeRange />
-        <div className="mt-5 ml-2">
-          <button className="mr-2 border p-2 rounded hover:bg-blue-500 hover:text-mydark" onClick={()=>dispatch({type:"SET_ACTIVE_TAB",payload:1})}>
+        <div className="mt-5 ml-2 flex justify-center items-center">
+          <button className="mr-2 border p-2 rounded bg-gray-500 hover:bg-gray-600 " onClick={()=>dispatch({type:"SET_ACTIVE_TAB",payload:1})}>
             Add more
           </button>
-          <button onClick={generate}className="bg-blue-500 text-mylight border p-2 rounded hover:bg-mydark hover:text-white">
+          <button 
+            className="mr-2 border bg-green-700 p-2 rounded hover:bg-green-800"
+            onClick={generate}>
             Generate
           </button>
         </div>
       </div>
-    </TabLayout>
+  
   );
 }
 
