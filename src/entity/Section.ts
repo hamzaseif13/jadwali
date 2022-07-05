@@ -11,26 +11,30 @@ export class Section {
   startTime: number;
   @Column({ name: "end_time" ,nullable:true,type:"double"})
   endTime: number;
-  @Column({nullable:true})
+  @Column({name:"days_1",nullable:true})
   days: string;
   @Column({nullable:true})
   instructor: string;
   @Column({nullable:true})
   status: string;
-  @Column({nullable:true})
+  @Column({name:"hall_1",nullable:true})
   hall: string;
   @Column({nullable:true})
   capacity: number;
-
   @Column({nullable:true})
   registered: number;
-
   @Column({ name: "seat_count" ,nullable:true})
   seatCount: string;
-
   @Column({ name: "teaching_type" ,nullable:true})
   teachingType: string;
-
+  @Column({name:"days_2"})
+  days2: string;
+  @Column({name:"hall_2"})
+  hall2: string;
+  @Column({name:"time_1"})
+  firstTime:string
+  @Column({name:"time_2"})
+  secondTime:string
 
  
 
