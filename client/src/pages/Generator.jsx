@@ -19,8 +19,8 @@ function Generator() {
     }
   }
   return (
-    <div className=" bg-mydark ">
-      <h1 className="pt-8 text-3xl text-white   ml-3 md:ml-26 sm:ml-10 ">Jadwali generator</h1>
+    <div className=" bg-mydark pb-20 ">
+      <h1 className="pt-8 text-3xl  text-white   ml-3 md:ml-26 sm:ml-10 ">Jadwali generator</h1>
       <TabWrapper>
         <TabButton name="Add courses" order={1} />
         <TabButton name="Options" order={2} />

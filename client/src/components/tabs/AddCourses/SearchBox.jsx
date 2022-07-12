@@ -11,7 +11,7 @@ function SearchBox() {
     setTimeout(async () => {
       if (searchQuery.length < 2) return;
       const res = await fetch(
-        `/api/v1/search?query=${searchQuery}`,
+        `http://192.168.1.13:5050/api/v1/search?query=${searchQuery}`,
         {
           signal,
         }

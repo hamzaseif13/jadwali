@@ -10,8 +10,8 @@ function App() {
   return (
     <>
       <JadwaliProvider>
-        <Navbar />
         <Router>
+        <Navbar />
           <Routes>
             <Route path='/' excat element={<Home />} />
             <Route path='/generate' element={<Generator />} />
