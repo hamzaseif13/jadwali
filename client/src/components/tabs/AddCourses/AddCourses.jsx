@@ -31,6 +31,7 @@ function AddCourses() {
     dispatch({ type: "SET_GEN", payload: results });
     dispatch({ type: "SET_LOADING", payload: false });
     dispatch({ type: "SET_ACTIVE_TAB", payload: 3 });
+    dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
   };
   if (loading) return <Loading color="#343A40" />;
   return (

@@ -11,7 +11,7 @@ function SearchBox() {
     setTimeout(async () => {
       if (searchQuery.length < 2) return;
       const res = await fetch(
-        `/api/v1/search?query=${searchQuery}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/search?query=${searchQuery}`,
         {
           signal,
         }

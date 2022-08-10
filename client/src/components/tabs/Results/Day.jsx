@@ -8,7 +8,7 @@ function Day({ sections ,name,lastOne}) {
   
   
   return (
-    <div className={`text-base relative ${lastOne&&" rounded-r-lg "}text-white bg-mylight w-52 border-2 border-x-[0.5px] border-mydark  text-center pt-2  mt-5 `}>
+    <div className={`text-base relative ${lastOne&&" rounded-r-lg "}text-white bg-mylight w-52 border-2 border-x-[0.5px] border-mydark  text-center pt-2   `}>
       <h1 className="mb-3">{name}</h1>
       {
         sections.map(section=>{

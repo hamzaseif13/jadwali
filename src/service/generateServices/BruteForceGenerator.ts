@@ -12,8 +12,9 @@ export abstract class Generator {
   /**
    * generates schedules
    */
+ 
   public abstract generate(sections: Section[][]): Section[][];
-
+  
   /**
    * checks if a schedule timing meets the user needs
    * @param schedule schedule to check its timing
@@ -103,6 +104,78 @@ export abstract class Generator {
     });
     return valid;
   }
+  protected sortByScore(schedules: Section[][]) {
+    schedules.sort((a:Section[],b:Section[])=>{
+        return this.getScore(a) - this.getScore(b);
+    })
+  }
+  private getScore(schedule:Section[]):number{
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Sat"];
+    const daysArr :any= {
+        Sun:[],
+        Mon:[],
+        Tue:[],
+        Wed:[],
+        Thu:[],
+        Sat:[]
+    };  
+
+    for(const day of weekDays){
+        for(let sec of schedule){
+            
+            if(sec.days.includes(day))
+                daysArr[day].push(sec);
+        }
+    }
+    let identicalDays = true;
+    let score = 0;
+    let sumUniT = 0;
+    let sumDays = 0;
+    let uniTArr = [];
+    for (const day of weekDays) {
+        if(daysArr[day].length > 0){
+            daysArr[day] = this.dayStats(daysArr[day]);
+            score -= daysArr[day].studyPer*10;//better score if most of your school day is not free
+            sumUniT += daysArr[day].uniT; // worse score for longer school days
+            sumDays++;
+            uniTArr.push(daysArr[day].uniT);
+        }
+        else
+            score -= 10000; //better score for less days per week
+
+        // if(!schoolDays.includes("all") && schoolDays.includes(day.toLowerCase())){
+        //     if(identicalDays && daysArr[day].length === 0){
+        //         identicalDays = false;
+        //     }
+        // }
+    }
+    //this make the score higher(worse) if the time spent in the university is very different between school days (high variance)
+    let avg = sumUniT/sumDays;
+    score += Math.sqrt(uniTArr.reduce((sum,val)=>{
+        return sum + (val - avg)**2;
+    },0)/sumDays);
+
+    // if(!schoolDays.includes("all") && identicalDays)
+    //     score -= 20000;//better score if the school days are exactly as inputed by user
+
+    return ~~score;//round num
+  }
+  private dayStats(dayArr: Section[]) {
+    dayArr.sort((a,b)=>{
+      return a.endTime - b.endTime;
+  })
+
+  const uniT = dayArr[dayArr.length - 1].endTime - dayArr[0].startTime;
+  
+  let studyT = 0;
+  for (const sec of dayArr) {
+      studyT += sec.endTime - sec.startTime;;
+  }
+  let obj = {uniT: uniT , studyPer: studyT/uniT * 100};
+  // console.log(obj);
+  return obj;
+
+}
 }
 
 export class BruteForceGenerator extends Generator {
@@ -141,7 +214,10 @@ export class BruteForceGenerator extends Generator {
     const filteredSchedules: Section[][] = this.cartesianProduct(
       this._sections
     ).filter((schedule) => this.scheduleIsValid(schedule));
+    this.sortByScore(filteredSchedules);
     console.timeEnd();
-    return filteredSchedules;
+    return filteredSchedules.slice(0,100);
   }
 }
+
+
