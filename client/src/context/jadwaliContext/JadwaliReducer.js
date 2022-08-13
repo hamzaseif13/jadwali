@@ -30,6 +30,12 @@
         case "SET_ACTIVE_SCHEDULE":return{
             ...state, activeSchedule: action.payload
         }
+        case "SET_FAVORITE_SCHEDULES":return{
+            ...state, favoriteSchedules: action.payload
+        }
+        case "SET_FAVORITE_COURSES":return{
+            ...state, favoriteCourses: action.payload
+        }
         default:;
        
     }

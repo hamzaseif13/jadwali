@@ -6,6 +6,7 @@ import { JadwaliProvider } from './context/jadwaliContext/JadwaliContext'
 import Home from './pages/Home';
 
 
+
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
             <Route path='/' excat element={<Home />} />
             <Route path='/generate' element={<Generator />} />
           </Routes>
+          
         </Router>
       </JadwaliProvider>
     </>

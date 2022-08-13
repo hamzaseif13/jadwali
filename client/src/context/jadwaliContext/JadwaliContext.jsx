@@ -23,6 +23,8 @@ export const JadwaliProvider = ({ children }) => {
     loading: false,
     activeTab: 1,
     activeSchedule:0,
+    favoriteSchedules:JSON.parse(localStorage.getItem("favoriteSchedules"))||[],
+    favoriteCourses:JSON.parse(localStorage.getItem("favoriteCourses"))||[],
   };
 
   const [state, dispatch] = useReducer(JadwaliReducer, initialState);

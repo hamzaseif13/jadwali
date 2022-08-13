@@ -9,7 +9,7 @@ function Navbar() {
 
       <div className="flex space-x-2 md:mr-40 items-center text mr-3">
         <Link to="/generate">
-          <h1 className="text-white bg-green-700 p-1 rounded hover:bg-green-800">Start  sd</h1>
+          <h1 className="text-white bg-green-700 p-2 rounded hover:bg-green-800">Generate Now !</h1>
         </Link>
       </div>
 

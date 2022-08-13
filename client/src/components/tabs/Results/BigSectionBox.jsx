@@ -4,13 +4,13 @@ import Modal from "./Modal";
 function BigSectionBox({ course, section }) {
   let { startTime, endTime } = section;
   const [isOpen, setIsOpen] = useState(false);
-  let color = course.color;
+  let color = course.color
   const handleClick=()=>{
       setIsOpen(pre=>!pre)
   }
 
   return (
-    <div onClick={handleClick} onMouseLeave={()=>{}} className={ `flex  items-center xsm:justify-center  leading-tight absolute start${
+    <div onClick={handleClick}  className={ `flex  items-center xsm:justify-center  leading-tight absolute start${
       startTime * 10
     }  w-full bg-gray-500  
     border-l-[6px] border rounded-t rounded-l  height${

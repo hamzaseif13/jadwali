@@ -1,4 +1,4 @@
 node_modules
 .env
 dist
-src/mongoCourse.ts
+/src/mongoCourse.ts
