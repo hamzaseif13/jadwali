@@ -1,0 +1,27 @@
+hosting research
+
+backend
+	generate
+		GA fitness,hamza
+		late classes(online)
+		resources
+		workers
+		parallelism
+		capacity
+database
+	just analysis
+	DB update
+	schema update for hamza haha
+
+front end
+	jadwal, postion items add by department,
+	late classes drag and drop,suggest capcity
+search
+auth
+//tommorow
+hamza : wroker , ga , front end
+mohadn: ts, deploy 
+
+
+
+

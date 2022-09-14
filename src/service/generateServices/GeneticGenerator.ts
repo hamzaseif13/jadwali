@@ -6,6 +6,7 @@ import { Options } from "./generateService";
 export class GeneticGenerator extends Generator {
   constructor(options: Options) {
     super(options);
+    
   }
   public generate(sections: Section[][]): Section[][] {
     return [];

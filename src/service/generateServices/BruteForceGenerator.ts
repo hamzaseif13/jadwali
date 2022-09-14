@@ -12,9 +12,9 @@ export abstract class Generator {
   /**
    * generates schedules
    */
- 
+
   public abstract generate(sections: Section[][]): Section[][];
-  
+
   /**
    * checks if a schedule timing meets the user needs
    * @param schedule schedule to check its timing
@@ -105,27 +105,25 @@ export abstract class Generator {
     return valid;
   }
   protected sortByScore(schedules: Section[][]) {
-    schedules.sort((a:Section[],b:Section[])=>{
-        return this.getScore(a) - this.getScore(b);
-    })
+    schedules.sort((a: Section[], b: Section[]) => {
+      return this.getScore(a) - this.getScore(b);
+    });
   }
-  private getScore(schedule:Section[]):number{
+  private getScore(schedule: Section[]): number {
     const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Sat"];
-    const daysArr :any= {
-        Sun:[],
-        Mon:[],
-        Tue:[],
-        Wed:[],
-        Thu:[],
-        Sat:[]
-    };  
+    const daysArr: any = {
+      Sun: [],
+      Mon: [],
+      Tue: [],
+      Wed: [],
+      Thu: [],
+      Sat: [],
+    };
 
-    for(const day of weekDays){
-        for(let sec of schedule){
-            
-            if(sec.days.includes(day))
-                daysArr[day].push(sec);
-        }
+    for (const day of weekDays) {
+      for (let sec of schedule) {
+        if (sec.days.includes(day)) daysArr[day].push(sec);
+      }
     }
     let identicalDays = true;
     let score = 0;
@@ -133,49 +131,48 @@ export abstract class Generator {
     let sumDays = 0;
     let uniTArr = [];
     for (const day of weekDays) {
-        if(daysArr[day].length > 0){
-            daysArr[day] = this.dayStats(daysArr[day]);
-            score -= daysArr[day].studyPer*10;//better score if most of your school day is not free
-            sumUniT += daysArr[day].uniT; // worse score for longer school days
-            sumDays++;
-            uniTArr.push(daysArr[day].uniT);
-        }
-        else
-            score -= 10000; //better score for less days per week
+      if (daysArr[day].length > 0) {
+        daysArr[day] = this.dayStats(daysArr[day]);
+        score -= daysArr[day].studyPer * 10; //better score if most of your school day is not free
+        sumUniT += daysArr[day].uniT; // worse score for longer school days
+        sumDays++;
+        uniTArr.push(daysArr[day].uniT);
+      } else score -= 10000; //better score for less days per week
 
-        // if(!schoolDays.includes("all") && schoolDays.includes(day.toLowerCase())){
-        //     if(identicalDays && daysArr[day].length === 0){
-        //         identicalDays = false;
-        //     }
-        // }
+      // if(!schoolDays.includes("all") && schoolDays.includes(day.toLowerCase())){
+      //     if(identicalDays && daysArr[day].length === 0){
+      //         identicalDays = false;
+      //     }
+      // }
     }
     //this make the score higher(worse) if the time spent in the university is very different between school days (high variance)
-    let avg = sumUniT/sumDays;
-    score += Math.sqrt(uniTArr.reduce((sum,val)=>{
-        return sum + (val - avg)**2;
-    },0)/sumDays);
+    let avg = sumUniT / sumDays;
+    score += Math.sqrt(
+      uniTArr.reduce((sum, val) => {
+        return sum + (val - avg) ** 2;
+      }, 0) / sumDays
+    );
 
     // if(!schoolDays.includes("all") && identicalDays)
     //     score -= 20000;//better score if the school days are exactly as inputed by user
 
-    return ~~score;//round num
+    return ~~score; //round num
   }
   private dayStats(dayArr: Section[]) {
-    dayArr.sort((a,b)=>{
+    dayArr.sort((a, b) => {
       return a.endTime - b.endTime;
-  })
+    });
 
-  const uniT = dayArr[dayArr.length - 1].endTime - dayArr[0].startTime;
-  
-  let studyT = 0;
-  for (const sec of dayArr) {
-      studyT += sec.endTime - sec.startTime;;
+    const uniT = dayArr[dayArr.length - 1].endTime - dayArr[0].startTime;
+
+    let studyT = 0;
+    for (const sec of dayArr) {
+      studyT += sec.endTime - sec.startTime;
+    }
+    let obj = { uniT: uniT, studyPer: (studyT / uniT) * 100 };
+    // console.log(obj);
+    return obj;
   }
-  let obj = {uniT: uniT , studyPer: studyT/uniT * 100};
-  // console.log(obj);
-  return obj;
-
-}
 }
 
 export class BruteForceGenerator extends Generator {
@@ -183,25 +180,26 @@ export class BruteForceGenerator extends Generator {
     super(options);
   }
   /**
-   * brute force generator that uses cartesian Product method (it generates every posiable combination)
+   * brute force generator that uses backtracking
    */
-  private cartesianProduct(a: Section[][]): Section[][] {
-    // a = array of array
-    var i,
-      j,
-      l,
-      m,
-      a1,
-      o = [];
-    if (!a || a.length == 0) return a;
-    a1 = a.splice(0, 1)[0]; // the first array of a
-    a = this.cartesianProduct(a);
-    for (i = 0, l = a1.length; i < l; i++) {
-      if (a && a.length)
-        for (j = 0, m = a.length; j < m; j++) o.push([a1[i]].concat(a[j]));
-      else o.push([a1[i]]);
+  private getAllCombinations(sections: Section[][]): Section[][] {
+    const result: any = [];
+    const backtrack = (i: number, state: Section[])=> {
+      if (!this.scheduleIsValid(state)) {
+        return
+      }
+      if (state.length === sections.length) {
+        result.push(state);
+        return;
+      }
+      for (let y of sections[i]) {
+        const concate = state.slice()
+        concate.push(y)
+        backtrack(i + 1, concate);
+      }
     }
-    return o;
+    backtrack(0, []);
+    return result;
   }
   /**
    * generates schedules
@@ -210,14 +208,14 @@ export class BruteForceGenerator extends Generator {
    */
   public generate(sections: Section[][]) {
     this._sections = sections;
-    console.time();
-    const filteredSchedules: Section[][] = this.cartesianProduct(
+    console.time('generate time');
+    const filteredSchedules: Section[][]= this.getAllCombinations(
       this._sections
-    ).filter((schedule) => this.scheduleIsValid(schedule));
+    )
     this.sortByScore(filteredSchedules);
-    console.timeEnd();
-    return filteredSchedules.slice(0,100);
+    console.log(filteredSchedules.length);
+    console.timeEnd('generate time');
+    return filteredSchedules.slice(0, 100);
+   
   }
 }
-
-
