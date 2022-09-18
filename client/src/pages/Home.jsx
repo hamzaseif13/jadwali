@@ -5,7 +5,7 @@ import schedule from "../assests/sch2.png";
 import { Link } from "react-router-dom";
 
 
-import Container from "../components/home/Container";
+import Container from "./Home/Container";
 
 function Home() {
   return (

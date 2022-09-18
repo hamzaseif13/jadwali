@@ -36,6 +36,9 @@
         case "SET_FAVORITE_COURSES":return{
             ...state, favoriteCourses: action.payload
         }
+        case "SET_DEPARTMENT":return{
+            ...state, selectedDepartment: action.payload
+        }
         default:;
        
     }

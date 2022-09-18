@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import TabButton from '../components/tabs/TabButton'
-import TabWrapper from '../components/tabs/TabWrapper'
-import AddCourses from '../components/tabs/AddCourses/AddCourses'
-import Options from '../components/tabs/Options/Options'
-import Results from '../components/tabs/Results/Results'
+import TabButton from './Generator//TabButton'
+import TabWrapper from './Generator/TabWrapper'
+import AddCourses from './Generator/AddCourses/AddCourses'
+import Options from './Generator/Options/Options'
+import Results from './Generator/Results/Results'
 import JadwaliContext from '../context/jadwaliContext/JadwaliContext'
 import { useContext } from 'react'
-import Favorites from '../components/tabs/Favorites/Favorites'
+import Favorites from './Generator/Favorites/Favorites'
 function Generator() {
-  const {dispatch,activeTab} = useContext(JadwaliContext)
+  const {activeTab} = useContext(JadwaliContext)
   const renderActiveTap = ()=>{
     switch(activeTab){
       case 1:return<AddCourses/>

@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
-import Day from "./Day";
+import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-import NoResults from "../../layout/NoResults";
+import NoResults from "../../../components/layout/NoResults";
 import Table from "./Table";
 
 function Results({favorite}) {

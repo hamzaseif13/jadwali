@@ -4,7 +4,7 @@ import MinimumFilter from "./MinimumFilter";
 import TimeRange from "./TimeRange";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import { useContext } from "react";
-import Loading from "../../layout/Loading";
+import Loading from "../../../components/layout/Loading";
 import {fetchSchedules} from '../../../context/jadwaliContext/JadwaliActions'
 function Options() {
   const {

@@ -1,5 +1,6 @@
-import { useState, createContext, useReducer } from "react";
+import {  createContext, useReducer } from "react";
 import JadwaliReducer from "./JadwaliReducer";
+import { departmentData } from "./departmentsData";
 const JadwaliContext = createContext();
 
 export const JadwaliProvider = ({ children }) => {
@@ -25,6 +26,8 @@ export const JadwaliProvider = ({ children }) => {
     activeSchedule:0,
     favoriteSchedules:JSON.parse(localStorage.getItem("favoriteSchedules"))||[],
     favoriteCourses:JSON.parse(localStorage.getItem("favoriteCourses"))||[],
+    selectedDepartment:"All",
+    departments:departmentData,
   };
 
   const [state, dispatch] = useReducer(JadwaliReducer, initialState);

@@ -1,17 +1,21 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState ,useContext} from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Results from "./SearchResultsWrapper";
+
+
+import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 function SearchBox() {
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const abortController = useRef();
+  const {selectedDepartment}=useContext(JadwaliContext)
   //retrive data from api
   const searchCourses = (signal) => {
     setTimeout(async () => {
       if (searchQuery.length < 2) return;
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/v1/search?query=${searchQuery}`,
+        `${process.env.REACT_APP_API_URL}/api/v1/search?query=${searchQuery}&department=${selectedDepartment}`,
         {
           signal,
         }
@@ -47,10 +51,10 @@ function SearchBox() {
   };
   return (
     <div className="relative ">
-      <h1 className="text-white text-center">Search for your courses</h1>
+      <h1 className="text-gray-400 text-center">Search for your courses</h1>
       <div className="w-full  flex justify-center relative">
         <input
-          className="w-[95%] mt-1 mx-1 text-lg shadow-sm border outline-none max-w-[600px] text-blue-500 rounded rounded-b-none  bg-mylight p-2"
+          className="w-[95%] mt-2 mx-1 text-lg shadow-sm border outline-none max-w-[600px] text-blue-500 rounded rounded-b-none  bg-mylight p-2"
           placeholder="cs101,calculas 1, 1378723"
           onChange={onInputChange}
           value={searchQuery}

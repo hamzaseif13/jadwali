@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, {  } from "react";
 import Table from "../Results/Table";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-import NoResults from "../../layout/NoResults";
 function Favorites() {
   const [activeSchedule, setActiveSchedule] = React.useState(0);
   const { favoriteSchedules, dispatch, favoriteCourses} = React.useContext(JadwaliContext);

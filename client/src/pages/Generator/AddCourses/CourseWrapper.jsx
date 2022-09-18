@@ -2,7 +2,7 @@ import React,{useContext}from 'react'
 import Course from './Course'
 import JadwaliContext from '../../../context/jadwaliContext/JadwaliContext'
 function CourseWrapper() {
-  const {dispatch, registeredCourses} = useContext(JadwaliContext);
+  const { registeredCourses} = useContext(JadwaliContext);
 
   return (
     <div className="flex flex-wrap justify-center mt-2    items-center">

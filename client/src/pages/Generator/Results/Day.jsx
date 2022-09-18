@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import SmallSectionBox from "./SmallSectionBox";

@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import SearchBox from "./SearchBox";
 import CourseWrapper from "./CourseWrapper";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-import Loading from "../../layout/Loading";
-
+import Loading from "../../../components/layout/Loading";
+import DepartmentSearch from './DepartmentSearch'
 import { fetchSchedules } from "../../../context/jadwaliContext/JadwaliActions";
 
 function AddCourses() {
@@ -36,6 +36,7 @@ function AddCourses() {
   if (loading) return <Loading color="#343A40" />;
   return (
     <div className="mt-2 ">
+      <DepartmentSearch/>
       <SearchBox />
       <div className="flex flex-col-reverse sm:flex-col ">
         <CourseWrapper />
