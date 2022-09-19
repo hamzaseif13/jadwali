@@ -11,7 +11,7 @@ AppDataSource.initialize()
   .then(() => {console.log("db connected")})
   .catch((err) => console.log(err));
 const app: Express = express();
-const PORT=process.env.PORT || 5050;
+const PORT=process.env.PORT || 3000
 
 app.use(express.static(path.join(__dirname, '../client/build')));
 
