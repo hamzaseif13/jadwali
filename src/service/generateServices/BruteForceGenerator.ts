@@ -36,7 +36,7 @@ export abstract class Generator {
       courses.map((lineNumber: string) => {
         return sectionRepo
           .createQueryBuilder("section")
-          .where("line_number = :lineNumber", { lineNumber })
+          .where(`line_number = :lineNumber and days!='U'`, { lineNumber })
           .getMany();
       })
     );
@@ -207,7 +207,7 @@ export class BruteForceGenerator extends Generator {
    * @returns a promise of final schedules
    */
   public generate(sections: Section[][]) {
-    this._sections = sections;
+    this._sections = sections.filter((section) => section.length > 0);
     console.time('generate time');
     const filteredSchedules: Section[][]= this.getAllCombinations(
       this._sections

@@ -20,7 +20,7 @@ export const JadwaliProvider = ({ children }) => {
       "border-white-500",
       "border-orange-500",
     ],
-    days: "Sun Mon Tue Wed Thu",
+    days: "Sun Mon Tue Wed Thu U",
     loading: false,
     activeTab: 1,
     activeSchedule:0,
