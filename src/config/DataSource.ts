@@ -3,6 +3,7 @@ import { Course } from '../entity/Course'
 import "reflect-metadata"
 import { Section } from '../entity/Section'
 import dotenv from 'dotenv'
+import { LastUpdated } from '../entity/LastUpdated'
 dotenv.config()
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -13,7 +14,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DATABASE_NAME,
     synchronize: true,
     logging: false,
-    entities: [Course,Section],
+    entities: [Course,Section,LastUpdated],
     subscribers: [],
     migrations: [],
 })
