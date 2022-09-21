@@ -9,7 +9,7 @@ function DepartmentSearch() {
   return (
     <div className="flex flex-col  justify-center items-center mb-2">
       <label
-        for="large"
+        htmlFor="large"
         className="block mb-2 text-base font-medium  text-gray-400 text-center">
         Department
       </label>

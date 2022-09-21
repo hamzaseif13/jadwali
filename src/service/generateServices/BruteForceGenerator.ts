@@ -65,11 +65,23 @@ export abstract class Generator {
     });
     return noConflict;
   }
+  private checkIfActiveOrFull(schedule: Section[]) {
+    let validSchedule = true;
+    schedule.forEach((section) => {
+      if (
+        section.status.toLowerCase() == "cancelled" 
+      )
+      
+        validSchedule = false;
+    });
+    return validSchedule;
+  }
   protected scheduleIsValid(schedule: Section[]): boolean {
     return (
       this.checkDaysValidation(schedule) &&
       this.checkTimeValidation(schedule) &&
-      this.checkForConflicts(schedule)
+      this.checkForConflicts(schedule) &&
+      this.checkIfActiveOrFull(schedule)
     );
   }
   /**
@@ -110,7 +122,6 @@ export abstract class Generator {
     });
   }
   private getScore(schedule: Section[]): number {
-    
     const weekDays = ["sun", "mon", "tue", "wed", "thu", "sat"];
     const daysArr: any = {
       sun: [],
@@ -120,13 +131,13 @@ export abstract class Generator {
       thu: [],
       sat: [],
     };
-    
+
     for (const day of weekDays) {
       for (let sec of schedule) {
         if (sec.days.includes(day)) daysArr[day].push(sec);
       }
     }
-    
+
     let identicalDays = true;
     let score = 0;
     let sumUniT = 0;
@@ -140,7 +151,7 @@ export abstract class Generator {
         sumDays++;
         uniTArr.push(daysArr[day].uniT);
       } else score -= 10000; //better score for less days per week
-     
+
       // if(!schoolDays.includes("all") && schoolDays.includes(day.toLowerCase())){
       //     if(identicalDays && daysArr[day].length === 0){
       //         identicalDays = false;
@@ -154,10 +165,10 @@ export abstract class Generator {
         return sum + (val - avg) ** 2;
       }, 0) / sumDays
     );
-      
+
     // if(!schoolDays.includes("all") && identicalDays)
     //     score -= 20000;//better score if the school days are exactly as inputed by user
-      
+
     return ~~score; //round num
   }
   private dayStats(dayArr: Section[]) {
@@ -186,20 +197,20 @@ export class BruteForceGenerator extends Generator {
    */
   private getAllCombinations(sections: Section[][]): Section[][] {
     const result: any = [];
-    const backtrack = (i: number, state: Section[])=> {
+    const backtrack = (i: number, state: Section[]) => {
       if (!this.scheduleIsValid(state)) {
-        return
+        return;
       }
       if (state.length === sections.length) {
         result.push(state);
         return;
       }
       for (let y of sections[i]) {
-        const concate = state.slice()
-        concate.push(y)
+        const concate = state.slice();
+        concate.push(y);
         backtrack(i + 1, concate);
       }
-    }
+    };
     backtrack(0, []);
     return result;
   }
@@ -209,15 +220,13 @@ export class BruteForceGenerator extends Generator {
    * @returns a promise of final schedules
    */
   public generate(sections: Section[][]) {
-    
     this._sections = sections.filter((section) => section.length > 0);
-    console.time('generate time');
-    const filteredSchedules: Section[][]= this.getAllCombinations(
+    console.time("generate time");
+    const filteredSchedules: Section[][] = this.getAllCombinations(
       this._sections
-    )
+    );
     this.sortByScore(filteredSchedules);
-    console.timeEnd('generate time');
+    console.timeEnd("generate time");
     return filteredSchedules.slice(0, 100);
-   
   }
 }

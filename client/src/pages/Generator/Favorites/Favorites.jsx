@@ -1,6 +1,7 @@
 import React, {  } from "react";
 import Table from "../Results/Table";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
+import Controls from "../Results/Controls";
 function Favorites() {
   const [activeSchedule, setActiveSchedule] = React.useState(0);
   const { favoriteSchedules, dispatch, favoriteCourses} = React.useContext(JadwaliContext);
@@ -46,15 +47,18 @@ function Favorites() {
     dispatch({ type: "SET_FAVORITE_COURSES", payload: newFavoriteCourses });
   };
   return (
-    <Table
-      removeFavorite={removeFavorite}
+    <div className=''>
+    <Controls removeFavorite={removeFavorite}
       favorite={true}
       prev={prev}
       next={next}
       schedule={schedule}
       total={favoriteSchedules.length}
-      activeSchedule={activeSchedule}
+      activeSchedule={activeSchedule} />
+    <Table
+      schedule={schedule}
     />
+    </div>
   );
 }
 

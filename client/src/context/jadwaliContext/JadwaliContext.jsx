@@ -11,6 +11,7 @@ export const JadwaliProvider = ({ children }) => {
     generatedSchedules: [],
     registeredCourses: [],
     intensiveSections:[],
+    availableSchedules:[],
     colors: [
       "border-red-500",
       "border-blue-500",
@@ -28,6 +29,7 @@ export const JadwaliProvider = ({ children }) => {
     favoriteCourses:JSON.parse(localStorage.getItem("favoriteCourses"))||[],
     selectedDepartment:"All",
     departments:departmentData,
+    showAll:true
   };
 
   const [state, dispatch] = useReducer(JadwaliReducer, initialState);

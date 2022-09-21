@@ -10,6 +10,6 @@ export const fetchSchedules = async (courses,minNumberOfDays, startTime, endTime
   });
   
   const results = await res.json();
-  console.log(results)
+  
   return results
 };

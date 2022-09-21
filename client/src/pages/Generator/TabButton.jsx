@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import JadwaliContext from "../../context/jadwaliContext/JadwaliContext";
 function TabButton({ name, order }) {
-  const { activeTab, dispatch, generatedSchedules,favoriteSchedules} =
+  const { activeTab, dispatch, generatedSchedules,favoriteSchedules,showAll, availableSchedules} =
     useContext(JadwaliContext);
   const handleClick = () => {
     dispatch({ type: "SET_ACTIVE_TAB", payload: order });
@@ -11,7 +11,7 @@ function TabButton({ name, order }) {
     <li className="mr-2 relative" onClick={handleClick}>
       {order === 3 && (
         <h1 className="absolute text-white bg-red-500 rounded  top-2 left-16">
-          {generatedSchedules.length}
+          {showAll?generatedSchedules.length:availableSchedules.length}
         </h1>
       )}
       {order === 4 && (

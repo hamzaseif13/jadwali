@@ -2,33 +2,63 @@ import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import NoResults from "../../../components/layout/NoResults";
 import Table from "./Table";
+import Controls from "./Controls";
 
-function Results({favorite}) {
-  const { generatedSchedules, dispatch, activeSchedule,favoriteSchedules, registeredCourses, favoriteCourses } =
-    useContext(JadwaliContext);
-  if (generatedSchedules.length === 0) return <NoResults />;
-  const schedule = generatedSchedules[activeSchedule] || [];
-  //if (generatedSchedules.length === 0) return <NoResults />;
+function Results({ favorite }) {
+  const {
+    generatedSchedules,
+    dispatch,
+    activeSchedule,
+    favoriteSchedules,
+    registeredCourses,
+    favoriteCourses,
+    availableSchedules,
+    showAll,
+  } = useContext(JadwaliContext);
+  let schedules = showAll ? generatedSchedules : availableSchedules;
+  if (schedules.length === 0) return <Controls />;
+  const schedule = schedules[activeSchedule] || [];
   const prev = () => {
     if (activeSchedule > 0) {
       dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: activeSchedule - 1 });
     }
   };
   const next = () => {
-    if (activeSchedule < generatedSchedules.length - 1) {
+    if (activeSchedule < schedules.length - 1) {
       dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: activeSchedule + 1 });
     }
   };
 
-  const addLocalStorage = ()=>{
-    dispatch({ type: "SET_FAVORITE_SCHEDULES", payload: [...favoriteSchedules,generatedSchedules[activeSchedule]] });
-    localStorage.setItem("favoriteSchedules",JSON.stringify([...favoriteSchedules,generatedSchedules[activeSchedule]]))
-    dispatch({ type: "SET_FAVORITE_COURSES", payload: [...favoriteCourses,...registeredCourses] });
-    localStorage.setItem("favoriteCourses",JSON.stringify([...favoriteCourses,...registeredCourses]))
-    
-  }
+  const addLocalStorage = () => {
+    dispatch({
+      type: "SET_FAVORITE_SCHEDULES",
+      payload: [...favoriteSchedules, schedules[activeSchedule]],
+    });
+    localStorage.setItem(
+      "favoriteSchedules",
+      JSON.stringify([...favoriteSchedules, schedules[activeSchedule]])
+    );
+    dispatch({
+      type: "SET_FAVORITE_COURSES",
+      payload: [...favoriteCourses, ...registeredCourses],
+    });
+    localStorage.setItem(
+      "favoriteCourses",
+      JSON.stringify([...favoriteCourses, ...registeredCourses])
+    );
+  };
   return (
-    <Table prev={prev} next={next} schedule={schedule} total={generatedSchedules.length} activeSchedule={activeSchedule} addLocalStorage={addLocalStorage}/>
+    <div className="text-white  sm:ml-10 md:ml-26  sm:mr-10 md:mr-26 ">
+      <Controls
+        prev={prev}
+        next={next}
+        total={schedules.length}
+        activeSchedule={activeSchedule}
+        addLocalStorage={addLocalStorage}
+        schedule={schedule}
+      />
+      <Table schedule={schedule} />
+    </div>
   );
 }
 

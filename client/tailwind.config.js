@@ -1,11 +1,15 @@
 module.exports = {
-
+  safelist: [
+    'text-red-400',
+    'text-orange-400',
+    'text-green-400',
+    
+  ],
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     screens: {
-      
       'xsm':"400px",
       'sm': '640px',
       // => @media (min-width: 640px) { ... }

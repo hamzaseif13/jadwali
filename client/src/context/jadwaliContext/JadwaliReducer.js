@@ -39,6 +39,12 @@
         case "SET_DEPARTMENT":return{
             ...state, selectedDepartment: action.payload
         }
+        case "SET_GEN_AVAL":return{
+            ...state, availableSchedules: action.payload
+        }
+        case "SET_SHOW_ALL":return{
+            ...state, showAll: action.payload
+        }
         default:;
        
     }
