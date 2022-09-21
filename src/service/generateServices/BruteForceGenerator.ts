@@ -50,11 +50,11 @@ export abstract class Generator {
     let noConflict = true;
     let days: Section[][] = [[], [], [], [], []];
     schedule.forEach((section: Section) => {
-      if (section.days.includes("Sun")) days[0].push(section);
-      if (section.days.includes("Mon")) days[1].push(section);
-      if (section.days.includes("Tue")) days[2].push(section);
-      if (section.days.includes("Wed")) days[3].push(section);
-      if (section.days.includes("Thu")) days[4].push(section);
+      if (section.days.includes("sun")) days[0].push(section);
+      if (section.days.includes("mon")) days[1].push(section);
+      if (section.days.includes("tue")) days[2].push(section);
+      if (section.days.includes("wed")) days[3].push(section);
+      if (section.days.includes("thu")) days[4].push(section);
     });
     days.forEach((day) => {
       if (day.length > 1) {
@@ -110,21 +110,23 @@ export abstract class Generator {
     });
   }
   private getScore(schedule: Section[]): number {
-    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Sat"];
+    
+    const weekDays = ["sun", "mon", "tue", "wed", "thu", "sat"];
     const daysArr: any = {
-      Sun: [],
-      Mon: [],
-      Tue: [],
-      Wed: [],
-      Thu: [],
-      Sat: [],
+      sun: [],
+      mon: [],
+      tue: [],
+      wed: [],
+      thu: [],
+      sat: [],
     };
-
+    
     for (const day of weekDays) {
       for (let sec of schedule) {
         if (sec.days.includes(day)) daysArr[day].push(sec);
       }
     }
+    
     let identicalDays = true;
     let score = 0;
     let sumUniT = 0;
@@ -138,7 +140,7 @@ export abstract class Generator {
         sumDays++;
         uniTArr.push(daysArr[day].uniT);
       } else score -= 10000; //better score for less days per week
-
+     
       // if(!schoolDays.includes("all") && schoolDays.includes(day.toLowerCase())){
       //     if(identicalDays && daysArr[day].length === 0){
       //         identicalDays = false;
@@ -152,10 +154,10 @@ export abstract class Generator {
         return sum + (val - avg) ** 2;
       }, 0) / sumDays
     );
-
+      
     // if(!schoolDays.includes("all") && identicalDays)
     //     score -= 20000;//better score if the school days are exactly as inputed by user
-
+      
     return ~~score; //round num
   }
   private dayStats(dayArr: Section[]) {
@@ -207,13 +209,13 @@ export class BruteForceGenerator extends Generator {
    * @returns a promise of final schedules
    */
   public generate(sections: Section[][]) {
+    
     this._sections = sections.filter((section) => section.length > 0);
     console.time('generate time');
     const filteredSchedules: Section[][]= this.getAllCombinations(
       this._sections
     )
     this.sortByScore(filteredSchedules);
-    console.log(filteredSchedules.length);
     console.timeEnd('generate time');
     return filteredSchedules.slice(0, 100);
    

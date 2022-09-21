@@ -85,11 +85,11 @@ function Table({
             <h1 className="h-6 ">18:30</h1>
           </div>
         </div>
-        <Day sections={filterDay("Sun")} name="Sun" />
-        <Day sections={filterDay("Mon")} name="Mon" />
-        <Day sections={filterDay("Tue")} name="Tue" />
-        <Day sections={filterDay("Wed")} name="Wen" />
-        <Day sections={filterDay("Thu")} lastOne={true} name="Thu" />
+        <Day sections={filterDay("sun")} name="Sun" />
+        <Day sections={filterDay("mon")} name="Mon" />
+        <Day sections={filterDay("tue")} name="Tue" />
+        <Day sections={filterDay("wed")} name="Wen" />
+        <Day sections={filterDay("thu")} lastOne={true} name="Thu" />
       </div>
     </div>
   );

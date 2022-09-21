@@ -2,8 +2,8 @@ import React,{useState} from "react";
 import Modal from "./Modal";
 function BigSectionBox({ course, section }) {
   let { startTime, endTime } = section;
-  const [isOpen, setIsOpen] = useState(false);
   let color = course.color
+  const [isOpen, setIsOpen] = useState(false);
   const handleClick=()=>{
       setIsOpen(pre=>!pre)
   }

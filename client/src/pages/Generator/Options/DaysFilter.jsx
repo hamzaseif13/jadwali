@@ -17,19 +17,19 @@ function DaysFilter() {
             <h1 className="text-lg mb-2">Select Days </h1>
             <div className="flex items-center justify-center flex-wrap">
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("Sun")} className={`rounded border p-2 ${days.includes("Sun") ? 'bg-blue-500' : ''}`}>Sunday</button>
+                    <button onClick={() => handleClick("sun")} className={`rounded border p-2 ${days.includes("sun") ? 'bg-blue-500' : ''}`}>Sunday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("Mon")} className={`rounded border p-2 ${days.includes("Mon") ? 'bg-blue-500' : ''}`}>Monday</button>
+                    <button onClick={() => handleClick("mon")} className={`rounded border p-2 ${days.includes("mon") ? 'bg-blue-500' : ''}`}>Monday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("Tue")} className={`rounded border p-2 ${days.includes("Tue") ? 'bg-blue-500' : ''}`}>Tuesday</button>
+                    <button onClick={() => handleClick("tue")} className={`rounded border p-2 ${days.includes("tue") ? 'bg-blue-500' : ''}`}>Tuesday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("Wed")} className={`rounded border p-2 ${days.includes("Wed") ? 'bg-blue-500' : ''}`}>wedesday</button>
+                    <button onClick={() => handleClick("wed")} className={`rounded border p-2 ${days.includes("wed") ? 'bg-blue-500' : ''}`}>wedesday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("Thu")} className={`rounded border p-2 ${days.includes("Thu") ? 'bg-blue-500' : ''}`}>thursday</button>
+                    <button onClick={() => handleClick("thu")} className={`rounded border p-2 ${days.includes("thu") ? 'bg-blue-500' : ''}`}>thursday</button>
                 </div>
             </div>
         </div>
