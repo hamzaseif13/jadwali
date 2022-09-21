@@ -38,7 +38,8 @@ app.get('/api/v1/last_updated',async(req,res)=>{
   try{
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)
     const lastUpdatedDate = await lastUpdatedRepo.createQueryBuilder('last_updated').orderBy('last_updated','DESC').getMany()
-    res.status(200).json(calcDate( lastUpdatedDate[0].lastUpdated,new Date()))
+    console.log(lastUpdatedDate[0])
+    res.status(200).json(lastUpdatedDate[0].lastUpdated)
   }
   catch(err){
     res.status(505).send(err)

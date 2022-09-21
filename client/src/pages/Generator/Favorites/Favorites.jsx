@@ -47,7 +47,7 @@ function Favorites() {
     dispatch({ type: "SET_FAVORITE_COURSES", payload: newFavoriteCourses });
   };
   return (
-    <div className=''>
+    <div className="text-white  sm:ml-10 md:ml-26  sm:mr-10 md:mr-26 ">
     <Controls removeFavorite={removeFavorite}
       favorite={true}
       prev={prev}

@@ -25,6 +25,7 @@ function Options() {
     dispatch({ type: "SET_GEN", payload: schedules });
     dispatch({type:"SET_LOADING",payload:false})
     dispatch({type:"SET_ACTIVE_TAB",payload:3})
+    dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
   };
   if(loading)return <Loading />;
   return (

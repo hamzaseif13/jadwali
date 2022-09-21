@@ -1,4 +1,4 @@
-import { Column,Entity ,OneToMany,PrimaryGeneratedColumn} from "typeorm";
+import { Column,Entity ,OneToMany,PrimaryGeneratedColumn, CreateDateColumn} from "typeorm";
 
 
 @Entity()
@@ -6,7 +6,7 @@ export class LastUpdated {
     @PrimaryGeneratedColumn("uuid")
     id:number
     
-    @Column({name:"last_updated",default:()=>`CURRENT_TIMESTAMP`})
+    @CreateDateColumn({name:'last_updated'})
     lastUpdated:Date
    
 }

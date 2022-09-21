@@ -7,16 +7,7 @@ import JadwaliContext from "../context/jadwaliContext/JadwaliContext";
 import { useContext, useEffect, useState } from "react";
 import Favorites from "./Generator/Favorites/Favorites";
 function Generator() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    const fetchDate = async () => {
-      const date = await fetch("http://localhost:5050/api/v1/last_updated");
-      const dateJson = await date.json();
-      setDate(dateJson.lastUpdated);
-    };
-    fetchDate();
-  }, []);
-
+ 
   const { activeTab } = useContext(JadwaliContext);
   const renderActiveTap = () => {
     switch (activeTab) {
@@ -34,13 +25,11 @@ function Generator() {
   };
   return (
     <div className="  pb-20 ">
-      <div>
-        <h1 className="pt-4 text-2xl  text-white   ml-3 md:ml-40 sm:ml-10 ">
+      <div className=' text-white mt-4'>
+        <h1 className=" text-2xl  text-white   ml-3 md:ml-40 sm:ml-10 ">
           Generator
         </h1>
-        <div>
-          <h1>Last updated :{date} </h1>
-        </div>
+        
       </div>
 
       <TabWrapper>

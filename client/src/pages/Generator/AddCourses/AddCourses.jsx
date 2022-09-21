@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import SearchBox from "./SearchBox";
 import CourseWrapper from "./CourseWrapper";
@@ -17,7 +17,17 @@ function AddCourses() {
     loading,
     dispatch,
   } = useContext(JadwaliContext);
+  const [date, setDate] = useState(null);
 
+  useEffect(() => {
+    const fetchDate = async () => {
+      const date = await fetch("http://localhost:5050/api/v1/last_updated");
+      const dateJson = await date.json();
+      setDate(dateJson);
+    };
+    fetchDate();
+  }, []);
+  
   const generate = async () => {
     if (registeredCourses.length === 0) return;
     dispatch({ type: "SET_LOADING", payload: true });
@@ -28,8 +38,8 @@ function AddCourses() {
       endTime,
       days
     );
-      
-    const  availableSchedules = results.filter((schedule) => {
+
+    const availableSchedules = results.filter((schedule) => {
       let t = true;
       schedule.forEach((section) => {
         if (section.registered >= section.capacity) t = false;
@@ -43,8 +53,24 @@ function AddCourses() {
     dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
   };
   if (loading) return <Loading color="#343A40" />;
+  /**
+   * text-sm font-medium text-center sm:ml-10 md:ml-40
+ mt- text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700
+ sm:mr-10 md:mr-40
+ 
+   */
   return (
     <div className="mt-2 ">
+      <div
+        className=" ml-4   p-2 rounded text-gray-400 sm:ml-10 md:ml-40
+sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center ">
+        <h1>
+          Last updated :
+          <span className="text-gray-300">
+              {date ?  date.split("T")[0]+ " "+date.split("T")[1].slice(0,5)     :"no date"}
+          </span>
+        </h1>
+      </div>
       <DepartmentSearch />
       <SearchBox />
       <div className="flex flex-col-reverse sm:flex-col ">
