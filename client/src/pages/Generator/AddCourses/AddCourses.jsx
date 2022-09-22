@@ -69,8 +69,9 @@ function AddCourses() {
 sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center my-3">
         <h1>
           Last updated :
-          <span className="text-gray-300">
-             {" "} {date.days} days {date.hours} hours {date.minutes} minutes{" "}
+          <span className="text-[#ca9f28] ">
+              
+             {" "} <span className='text-gray-300'>{date.days}</span> Days <span className='text-gray-300'>{date.hours}</span> Hours <span className='text-gray-300'>{date.minutes}</span> Minutes{" "} ago
           </span>
         </h1>
       </div>

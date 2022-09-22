@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-import NoResults from "../../../components/layout/NoResults";
 import Table from "./Table";
 import Controls from "./Controls";
 
-function Results({ favorite }) {
+function Results() {
   const {
     generatedSchedules,
     dispatch,
@@ -16,7 +15,16 @@ function Results({ favorite }) {
     showAll,
   } = useContext(JadwaliContext);
   let schedules = showAll ? generatedSchedules : availableSchedules;
-  if (schedules.length === 0) return <Controls />;
+  if (schedules.length === 0)
+    return (
+      <Controls
+        showAll={showAll}
+        prev={()=>{}}
+        next={()=>{}}
+        total={0}
+        activeSchedule={-1}
+      />
+    );
   const schedule = schedules[activeSchedule] || [];
   const prev = () => {
     if (activeSchedule > 0) {
