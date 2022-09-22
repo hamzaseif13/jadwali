@@ -24,7 +24,6 @@ app.use(generateController)
 
 app.post('/api/v1/update_date',async(req,res)=>{
   try{
-    
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)
     const lastUpdatedDate = new LastUpdated()
     await lastUpdatedRepo.save(lastUpdatedDate)
@@ -36,15 +35,20 @@ app.post('/api/v1/update_date',async(req,res)=>{
 })
 app.get('/api/v1/last_updated',async(req,res)=>{
   try{
+    
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)
     const lastUpdatedDate = await lastUpdatedRepo.createQueryBuilder('last_updated').orderBy('last_updated','DESC').getMany()
-    console.log(lastUpdatedDate[0])
-    res.status(200).json(lastUpdatedDate[0].lastUpdated)
+    console.log(lastUpdatedDate[0].lastUpdated)
+    const date =lastUpdatedDate[0].lastUpdated
+    const dateString = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` 
+    res.json({date:dateString})
   }
   catch(err){
     res.status(505).send(err)
   }
 })
+
+
 app.get("/*",(req,res)=>{
   res.sendFile(path.join(__dirname+'/../client/build/index.html'))
 })

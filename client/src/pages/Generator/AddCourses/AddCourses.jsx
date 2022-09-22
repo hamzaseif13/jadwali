@@ -17,13 +17,13 @@ function AddCourses() {
     loading,
     dispatch,
   } = useContext(JadwaliContext);
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState("no-date");
 
   useEffect(() => {
     const fetchDate = async () => {
       const date = await fetch("http://localhost:5050/api/v1/last_updated");
       const dateJson = await date.json();
-      setDate(dateJson);
+      setDate(dateJson.date);
     };
     fetchDate();
   }, []);
@@ -63,11 +63,11 @@ function AddCourses() {
     <div className="mt-2 ">
       <div
         className=" ml-4   p-2 rounded text-gray-400 sm:ml-10 md:ml-40
-sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center ">
+sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center my-3">
         <h1>
           Last updated :
           <span className="text-gray-300">
-              {date ?  date.split("T")[0]+ " "+date.split("T")[1].slice(0,5)     :"no date"}
+              {date}
           </span>
         </h1>
       </div>
