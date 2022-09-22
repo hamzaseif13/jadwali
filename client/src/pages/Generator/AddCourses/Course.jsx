@@ -10,12 +10,13 @@ function Course({ course }) {
     dispatch({ type: "SET_REG", payload: newRegisteredCourses });
     dispatch({ type: "SET_GEN", payload: [] });
     dispatch({ type: "SET_ACTIVE_SCHEDULE", payload:0 });
+    localStorage.setItem("registeredCourses", JSON.stringify(newRegisteredCourses));
   };
   return (
     <div className="border text-white mx-2 w-[95%] sm:w-[380px] p-1 my-1 rounded bg-gray-900">
       <h1 className="capitalize">{course.name.toLowerCase()}</h1>
       <div className="flex justify-between mt-1">
-        <h2 className="">{course.symbol}</h2>
+        <h2 className="">{course.symbol.toUpperCase()}</h2>
         <h2 className="">{course.creditHours} credit hours</h2>
         <TrashIcon  className="w-6 text-red-600 hover:text-red-800 cursor-pointer " onClick={removeCourse}/>
       </div>

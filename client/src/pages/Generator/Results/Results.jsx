@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import Table from "./Table";
 import Controls from "./Controls";
-
+import NoResults from "../../../components/layout/NoResults";
 function Results() {
   const {
     generatedSchedules,
@@ -17,6 +17,7 @@ function Results() {
   let schedules = showAll ? generatedSchedules : availableSchedules;
   if (schedules.length === 0)
     return (
+      <>
       <Controls
         showAll={showAll}
         prev={()=>{}}
@@ -24,6 +25,8 @@ function Results() {
         total={0}
         activeSchedule={-1}
       />
+        <NoResults text="There are no Results with the selected time and days"/>
+      </>
     );
   const schedule = schedules[activeSchedule] || [];
   const prev = () => {

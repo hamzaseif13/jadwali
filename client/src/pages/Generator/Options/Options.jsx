@@ -35,11 +35,11 @@ function Options() {
         <MinimumFilter />
         <TimeRange />
         <div className="mt-5 ml-2 flex justify-center items-center">
-          <button className="mr-2 border p-2 rounded bg-gray-500 hover:bg-gray-600 " onClick={()=>dispatch({type:"SET_ACTIVE_TAB",payload:1})}>
+          <button className="mr-2  p-2 rounded bg-gray-500 hover:bg-gray-600 " onClick={()=>dispatch({type:"SET_ACTIVE_TAB",payload:1})}>
             Add more
           </button>
           <button 
-            className="mr-2 border bg-green-700 p-2 rounded hover:bg-green-800"
+            className="mr-2 shadow-lg bg-green-800 p-2 rounded hover:bg-green-900"
             onClick={generate}>
             Generate
           </button>

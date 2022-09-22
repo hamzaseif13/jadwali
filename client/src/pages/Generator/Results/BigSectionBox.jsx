@@ -7,6 +7,12 @@ function BigSectionBox({ course, section }) {
   const handleClick = () => {
     setIsOpen((pre) => !pre);
   };
+  const doubleToStringTime = (time) => {
+    const str = time.toString().split(".")
+    let hours = str[0]
+    let minutes = str.length>1 ? "30":"00"
+    return `${hours}:${minutes}`
+  };
 
   return (
     <div
@@ -33,13 +39,13 @@ function BigSectionBox({ course, section }) {
           <h1
             className="text-center font-extrabold 
           text-mylight sm:text-xl lg:hidden">
-            {course.symbol}
+            {course.symbol.toUpperCase()}
           </h1>
           <h1 className="text-center sm:text-[1.2rem] lg:hidden">
             {section.number}
           </h1>
           <h1 className="text-[0.7rem]  xsm:text-center text-left sm:text-[1rem] ">
-            {startTime}-{endTime}
+          {doubleToStringTime(section.startTime)}-{doubleToStringTime(section.endTime)}
           </h1>
         </div>
       </div>

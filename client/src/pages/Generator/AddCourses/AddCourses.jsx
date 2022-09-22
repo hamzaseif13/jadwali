@@ -17,17 +17,26 @@ function AddCourses() {
     loading,
     dispatch,
   } = useContext(JadwaliContext);
-  const [date, setDate] = useState({days:0,hours:0,minutes:0,seconds:0});
+  const [date, setDate] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
+    dispatch({
+      type: "SET_REG",
+      payload: JSON.parse(localStorage.getItem("registeredCourses")) || [],
+    });
     const fetchDate = async () => {
       const date = await fetch("/api/v1/last_updated");
       const dateJson = await date.json();
-      let seconds =  Math.floor(dateJson.milliseconds / 1000);
+      let seconds = Math.floor(dateJson.milliseconds / 1000);
       let minutes = Math.floor(seconds / 60);
-      let hours =  Math.floor(minutes / 60);
-      let days =  Math.floor(hours / 24);
-      setDate({seconds,minutes,hours,days});
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+      setDate({ seconds, minutes, hours, days });
     };
     fetchDate();
   }, []);
@@ -70,8 +79,11 @@ sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center my-3">
         <h1>
           Last updated :
           <span className="text-[#ca9f28] ">
-              
-             {" "} <span className='text-gray-300'>{date.days}</span> Days <span className='text-gray-300'>{date.hours}</span> Hours <span className='text-gray-300'>{date.minutes}</span> Minutes{" "} ago
+            {" "}
+            <span className="text-gray-300">{date.days}</span> Days{" "}
+            <span className="text-gray-300">{date.hours % 24}</span> Hours{" "}
+            <span className="text-gray-300">{date.minutes % 60}</span> Minutes{" "}
+            ago
           </span>
         </h1>
       </div>
@@ -81,12 +93,12 @@ sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center my-3">
         <CourseWrapper />
         <div className="sm:my-2 sm:mt-1 mt-2 text-white flex flex-row justify-start ml-3 sm:justify-center">
           <button
-            className="mr-2 border bg-green-700 p-2 rounded hover:bg-green-800"
+            className="mr-2 shadow-lg bg-green-800 p-2 rounded hover:bg-green-900"
             onClick={generate}>
             Generate
           </button>
           <button
-            className="bg-red-600  border p-2 rounded hover:bg-red-800"
+            className="bg-red-600 shadow-lg  p-2 rounded hover:bg-red-800"
             onClick={() => dispatch({ type: "SET_ACTIVE_TAB", payload: 2 })}>
             filter
           </button>

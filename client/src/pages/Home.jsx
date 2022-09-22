@@ -1,5 +1,5 @@
 
-import gif from "../assests/searchAnif.gif";
+import gif from "../assests/searchAnif4.gif";
 import filter from "../assests/filter.png";
 import schedule from "../assests/sch2.png";
 import { Link } from "react-router-dom";
@@ -39,7 +39,7 @@ function Home() {
               </button>
             </Link>
           </div>
-          <img className="w-full  block" src={schedule} alt="dashboard" />
+          <img className="w-full  shadow-lg block" src={schedule} alt="dashboard"  />
         </div>
       </section>
 

@@ -13,17 +13,24 @@ function SmallSectionBox({ course, section }) {
   const handleClick = () => {
     setIsOpen((pre) => !pre);
   };
+  const doubleToStringTime = (time) => {
+    const str = time.toString().split(".")
+    let hours = str[0]
+    let minutes = str.length>1 ? "30":"00"
+    return `${hours}:${minutes}`
+  };
+
   return (
-    <div className={style}onClick={handleClick}>
+    <div className={style} onClick={handleClick}>
       <div className="">
         <h1
           className="text-left  font-extrabold text-xs md:text-[1.4rem]
         text-mylight sm:text-center sm:text-lg ">
-          {course.symbol}
+          {course.symbol.toUpperCase()}
         </h1>
-        {isOpen&& <Modal section={section} course={course}/>}
+        {isOpen && <Modal section={section} course={course} />}
         <h1 className="text-[0.7rem]  text-center sm:text-[1rem] ">
-          {section.startTime}-{section.endTime}&nbsp;({section.number})
+          {doubleToStringTime(section.startTime)}-{doubleToStringTime(section.endTime)}&nbsp;({section.number})
         </h1>
       </div>
     </div>

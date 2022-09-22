@@ -2,15 +2,14 @@ import React, {  } from "react";
 import Table from "../Results/Table";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import Controls from "../Results/Controls";
+import NoResults from "../../../components/layout/NoResults";
 function Favorites() {
   const [activeSchedule, setActiveSchedule] = React.useState(0);
   const { favoriteSchedules, dispatch, favoriteCourses} = React.useContext(JadwaliContext);
 
   if (favoriteSchedules.length < 1) {
     return (
-      <h1 className="text-white text-center mt-10">
-        There is no Favories Schedules :(
-      </h1>
+      <NoResults text="There are no Favorite Schedules"/>
     );
   }
   const schedule = favoriteSchedules[activeSchedule];

@@ -55,7 +55,7 @@ function SearchBox() {
       <div className="w-full  flex justify-center relative">
         <input
           className="w-[95%] mt-2 mx-1 text-lg shadow-sm border outline-none max-w-[600px] text-blue-500 rounded rounded-b-none  bg-mylight p-2"
-          placeholder="cs101,calculas 1, 1378723"
+          placeholder="CS101, Calculas 1, 1378723"
           onChange={onInputChange}
           value={searchQuery}
         />
