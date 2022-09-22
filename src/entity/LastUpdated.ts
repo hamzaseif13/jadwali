@@ -6,7 +6,7 @@ export class LastUpdated {
     @PrimaryGeneratedColumn("uuid")
     id:number
     
-    @CreateDateColumn({name:'last_updated'})
-    lastUpdated:Date
-   
+    @Column({name:'last_updated',type:'bigint'})
+    lastUpdatedMS:number
+    
 }

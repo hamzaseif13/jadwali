@@ -226,7 +226,6 @@ export class BruteForceGenerator extends Generator {
       this._sections
     );
     this.sortByScore(filteredSchedules);
-    console.log(filteredSchedules);
     console.timeEnd("generate time");
     return filteredSchedules.slice(0, 100);
   }

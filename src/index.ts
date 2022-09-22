@@ -26,6 +26,7 @@ app.post('/api/v1/update_date',async(req,res)=>{
   try{
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)
     const lastUpdatedDate = new LastUpdated()
+    lastUpdatedDate.lastUpdatedMS = new Date().getTime()
     await lastUpdatedRepo.save(lastUpdatedDate)
     res.status(200).send(lastUpdatedDate)
   }
@@ -38,10 +39,8 @@ app.get('/api/v1/last_updated',async(req,res)=>{
     
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)
     const lastUpdatedDate = await lastUpdatedRepo.createQueryBuilder('last_updated').orderBy('last_updated','DESC').getMany()
-    console.log(lastUpdatedDate[0].lastUpdated)
-    const date =lastUpdatedDate[0].lastUpdated
-    const dateString = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` 
-    res.json({date:dateString})
+    
+    res.json({milliseconds:new Date().getTime()-lastUpdatedDate[0].lastUpdatedMS})
   }
   catch(err){
     res.status(505).send(err)

@@ -17,17 +17,20 @@ function AddCourses() {
     loading,
     dispatch,
   } = useContext(JadwaliContext);
-  const [date, setDate] = useState("no-date");
+  const [date, setDate] = useState({days:0,hours:0,minutes:0,seconds:0});
 
   useEffect(() => {
     const fetchDate = async () => {
       const date = await fetch("/api/v1/last_updated");
       const dateJson = await date.json();
-      setDate(dateJson.date);
+      let seconds =  Math.floor(dateJson.milliseconds / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours =  Math.floor(minutes / 60);
+      let days =  Math.floor(hours / 24);
+      setDate({seconds,minutes,hours,days});
     };
     fetchDate();
   }, []);
-  
   const generate = async () => {
     if (registeredCourses.length === 0) return;
     dispatch({ type: "SET_LOADING", payload: true });
@@ -67,7 +70,7 @@ sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center my-3">
         <h1>
           Last updated :
           <span className="text-gray-300">
-              {date}
+             {" "} {date.days} days {date.hours} hours {date.minutes} minutes{" "}
           </span>
         </h1>
       </div>
