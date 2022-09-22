@@ -22,10 +22,6 @@ app.use(cors())
 app.use(searchController)
 app.use(generateController)
 
-app.get("/*",(req,res)=>{
-  res.sendFile(path.join(__dirname+'/../client/build/index.html'))
-})
-
 app.post('/api/v1/update_date',async(req,res)=>{
   try{
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)
@@ -52,6 +48,10 @@ app.get('/api/v1/last_updated',async(req,res)=>{
   }
 })
 
+
+app.get("/*",(req,res)=>{
+  res.sendFile(path.join(__dirname+'/../client/build/index.html'))
+})
 
 
 function calcDate(date1:any, date2:any) {
