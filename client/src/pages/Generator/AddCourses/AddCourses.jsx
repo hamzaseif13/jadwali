@@ -21,7 +21,7 @@ function AddCourses() {
 
   useEffect(() => {
     const fetchDate = async () => {
-      const date = await fetch("http://localhost:5050/api/v1/last_updated");
+      const date = await fetch("/api/v1/last_updated");
       const dateJson = await date.json();
       setDate(dateJson.date);
     };
