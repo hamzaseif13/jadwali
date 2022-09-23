@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
   <head>
-    <meta charset="utf-8"  />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NC1P1B34EG"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-NC1P1B34EG");
+    </script>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
       content="Jadwali is a web application that lets you create schedules for university classes and manage them."
     />
-    
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,11 +38,11 @@
     -->
     <title>Jadwali</title>
   </head>
-  <body class="bg-slate-900" style="height:100vh">
+  <body class="bg-slate-900" style="height: 100vh">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root" ></div>
+    <div id="root"></div>
     <div id="lol"></div>
-    <div id='footer'></div>
+    <div id="footer"></div>
 
     <!--
       This HTML file is a template.
