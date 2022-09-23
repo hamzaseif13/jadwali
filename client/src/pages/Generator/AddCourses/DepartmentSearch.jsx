@@ -15,7 +15,7 @@ function DepartmentSearch() {
       </label>
       <select onChange={setDepartment} value={selectedDepartment} 
         id="large"
-        className="w-[95%] mt-1 mx-1 text-lg shadow-sm border outline-none max-w-[600px] text-blue-500 rounded rounded-b-none  bg-mylight p-2 m-auto ">
+        className="w-[95%] mt-1 mx-1 text-lg shadow-lg outline-none max-w-[600px] text-blue-500 rounded  bg-mylight p-2 m-auto ">
         <option defaultValue>All</option>
         {departments.map((department,index)=>(
           <option key={index} >{department}</option>

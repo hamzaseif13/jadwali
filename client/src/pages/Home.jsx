@@ -39,7 +39,8 @@ function Home() {
               </button>
             </Link>
           </div>
-          <img className="w-full  shadow-lg block" src={schedule} alt="dashboard"  />
+          <iframe className="w-full rounded min-h-[30rem]"src="https://www.youtube.com/embed/kBVvE3plipk" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          
         </div>
       </section>
 

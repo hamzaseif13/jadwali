@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Generator from './pages/Generator';
 import { JadwaliProvider } from './context/jadwaliContext/JadwaliContext'
 import Home from './pages/Home';
+import FeedBack from './pages/FeedBack';
 
 
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path='/' excat element={<Home />} />
             <Route path='/generate' element={<Generator />} />
+            <Route path='/feedback' element={<FeedBack />} />
           </Routes>
         </Router>
       </JadwaliProvider>

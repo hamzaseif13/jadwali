@@ -13,7 +13,7 @@ function Course({ course }) {
     localStorage.setItem("registeredCourses", JSON.stringify(newRegisteredCourses));
   };
   return (
-    <div className="border text-white mx-2 w-[95%] sm:w-[380px] p-1 my-1 rounded bg-gray-900">
+    <div className="shadow-lg text-white mx-2 w-[95%] sm:w-[380px] p-2 my-1 rounded bg-gray-800">
       <h1 className="capitalize">{course.name.toLowerCase()}</h1>
       <div className="flex justify-between mt-1">
         <h2 className="">{course.symbol.toUpperCase()}</h2>
