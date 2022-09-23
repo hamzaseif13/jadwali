@@ -12,7 +12,7 @@ function FeedBack() {
     const emailData = email.current.value;
     const messageData = message.current.value;
     const subjectData = subject.current.value;
-    fetch("http://localhost:5050/api/v1/feedback", {
+    fetch("/api/v1/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
