@@ -5,22 +5,16 @@ function Navbar() {
   const handleOpen = () => {
     setOpen(!open);
   };
+  
   return (
     <nav className=" px-2 sm:px-4 py-2.5 bg-gray-900  w-full z-20 top-0 left-0 border-b border-gray-600">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/">
-          <span className="self-center md:ml-20  text-4xl  whitespace-nowrap text-white">
+          <span className="self-center   text-4xl  whitespace-nowrap text-white">
             Jadwali
           </span>
         </Link>
-        <div className="flex md:order-2">
-          <Link to="/generate">
-            <button
-              type="button"
-              className="text-white   focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 bg-green-700 hover:bg-green-900 focus:ring-green-800">
-              Generate Now!
-            </button>
-          </Link>
+        <div className="flex md:order-2 md:hidden">
           <button
             data-collapse-toggle="navbar-sticky"
             onClick={handleOpen}
@@ -45,14 +39,17 @@ function Navbar() {
         <div
           className={`${
             open ? "" : "hidden"
-          } justify-between items-center w-full md:flex md:w-auto md:order-1`}
+          }  w-full md:flex md:w-auto md:order-1`}
           id="navbar-sticky">
-          <ul className="flex flex-col p-4 mt-4 rounded-lg border md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 e bg-gray-800 md:bg-gray-900 border-gray-700">
+           <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <Link to="/feedback">
               <li className="text-gray-400 hover:text-gray-300">Contact us</li>
             </Link>
             <Link to="/how-to-use">
               <li className="text-gray-400 hover:text-gray-300">How to use</li>
+            </Link>
+            <Link to="/generate">
+            <li className="text-white  hover:text-green-500">Generate</li>
             </Link>
           </ul>
         </div>

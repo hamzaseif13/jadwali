@@ -10,9 +10,7 @@ function SmallSectionBox({ course, section }) {
       (endTime - startTime) * 10
     } text-left  overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0 `;
   const [isOpen, setIsOpen] = useState(false);
-  const handleClick = () => {
-    setIsOpen((pre) => !pre);
-  };
+ 
   const doubleToStringTime = (time) => {
     const str = time.toString().split(".")
     let hours = str[0]
@@ -21,14 +19,14 @@ function SmallSectionBox({ course, section }) {
   };
 
   return (
-    <div className={style} onClick={handleClick}>
+    <div className={style} onClick={()=>setIsOpen(true)}>
       <div className="">
         <h1
           className="text-left  font-extrabold text-xs md:text-[1.4rem]
         text-mylight sm:text-center sm:text-lg ">
           {course.symbol.toUpperCase()}
         </h1>
-        {isOpen && <Modal section={section} course={course} />}
+        {isOpen&&<Modal section={section} close={()=>setIsOpen(false)} course={course} isOpen={isOpen}/>}
         <h1 className="text-[0.7rem]  text-center sm:text-[1rem] ">
           {doubleToStringTime(section.startTime)}-{doubleToStringTime(section.endTime)}&nbsp;({section.number})
         </h1>

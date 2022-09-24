@@ -9,6 +9,7 @@ import {searchController} from './controller/searchController';
 import { generateController } from "./controller/generateController";
 import compression from 'compression'
 import { feedbackController } from "./controller/feedbackController";
+import { sectionsController } from "./controller/sectionsController";
 AppDataSource.initialize()
   .then(() => {console.log("db connected")})
   .catch((err) => console.log(err));
@@ -23,6 +24,7 @@ app.use(cors())
 app.use(searchController)
 app.use(generateController)
 app.use(feedbackController)
+app.use(sectionsController)
 app.post('/api/v1/update_date',async(req,res)=>{
   try{
     const lastUpdatedRepo = AppDataSource.getRepository(LastUpdated)

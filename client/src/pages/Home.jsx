@@ -15,7 +15,7 @@ function Home() {
           
           <div className="mt-4 md:mt-0">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold  text-white">
-              Setting your Schedule has never been easier.
+              جدولك الدراسي افضل شيئ بلدنيا هاهاها
             </h2>
             <p className="mb-2 font-light  md:text-lg text-gray-400">
               

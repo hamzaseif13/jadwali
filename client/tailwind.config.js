@@ -32,5 +32,5 @@ module.exports = {
       overlay:'rgba(0,0,0,0.5)'
     }},
   },
-  plugins: [],
+  plugins: [ require('tailwindcss-rtl'),],
 }

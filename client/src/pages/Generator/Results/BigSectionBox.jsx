@@ -4,9 +4,6 @@ function BigSectionBox({ course, section }) {
   let { startTime, endTime } = section;
   let color = course.color;
   const [isOpen, setIsOpen] = useState(false);
-  const handleClick = () => {
-    setIsOpen((pre) => !pre);
-  };
   const doubleToStringTime = (time) => {
     const str = time.toString().split(".")
     let hours = str[0]
@@ -16,7 +13,7 @@ function BigSectionBox({ course, section }) {
 
   return (
     <div
-      onClick={handleClick}
+      onClick={()=>setIsOpen(true)}
       className={`shadow-lg hover:cursor-pointer  hover:bg-gray-400  flex  items-center xsm:justify-center  leading-tight absolute start${
         startTime * 10
       }  w-full bg-gray-500  
@@ -24,7 +21,7 @@ function BigSectionBox({ course, section }) {
       (endTime - startTime) * 10
     } h-100 overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0  `}>
       <div>
-        {isOpen && <Modal section={section} course={course} />}
+        {isOpen&&<Modal close={()=>setIsOpen(false)} isOpen={isOpen }section={section} course={course} />}
         <div className="">
           <h1 className="text-base text-center text-mylight font-extrabold hidden lg:block">
             {endTime - startTime > 1.5

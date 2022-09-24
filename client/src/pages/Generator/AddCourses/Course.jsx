@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-import { TrashIcon } from "@heroicons/react/solid";
+import { TrashIcon,InformationCircleIcon, } from "@heroicons/react/solid";
+import Modal from "./Modal/Modal";
 function Course({ course }) {
   const { dispatch, registeredCourses } = useContext(JadwaliContext);
+  const [modalOpen, setModalOpen] = React.useState(false);
   const removeCourse = () => {
+    console.log("sadasd")
     const newRegisteredCourses = registeredCourses.filter(
       (crs) => crs !== course
     );
@@ -12,13 +15,18 @@ function Course({ course }) {
     dispatch({ type: "SET_ACTIVE_SCHEDULE", payload:0 });
     localStorage.setItem("registeredCourses", JSON.stringify(newRegisteredCourses));
   };
+  
   return (
-    <div className="shadow-lg text-white mx-2 w-[95%] sm:w-[380px] p-2 my-1 rounded bg-gray-800">
-      <h1 className="capitalize">{course.name.toLowerCase()}</h1>
-      <div className="flex justify-between mt-1">
+    <div className="shadow-lg   text-white mx-2 w-[95%] sm:w-[380px] p-2 my-1 rounded bg-gray-800">
+      <div className="flex justify-between items-start"> 
+      <h1 className="capitalize text-lg">{course.name}</h1>
+      <button onClick={removeCourse} className=' top-1 right-2 text-2xl text-red-600'>&#10006;</button>
+      </div>
+      {modalOpen&&<Modal modalOpen={modalOpen} close={()=>setModalOpen(false)} course={course}/>}
+      <div className="flex justify-between mt-3 items-center">
         <h2 className="">{course.symbol.toUpperCase()}</h2>
         <h2 className="">{course.creditHours} credit hours</h2>
-        <TrashIcon  className="w-6 text-red-600 hover:text-red-800 cursor-pointer " onClick={removeCourse}/>
+        <button onClick={()=>setModalOpen(true)} className="bg-green-700 hover:bg-green-800 p-2 rounded">See details</button>
       </div>
     </div>
   );

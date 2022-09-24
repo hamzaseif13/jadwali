@@ -8,6 +8,7 @@ function FeedBack() {
   const message = useRef();
   const subject = useRef();
   const handleSubmit = () => {
+    setSuccesfully(null)
     setSubmiting(true);
     const emailData = email.current.value;
     const messageData = message.current.value;
@@ -50,7 +51,7 @@ function FeedBack() {
         </h2>
         <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
           Got a technical issue? Want to send feedback about a beta feature?
-          Need details about our Business plan? Let us know.
+         Let us know.
         </p>
         <form action="#" className="space-y-8" onSubmit={handleSubmit}>
           <div>
