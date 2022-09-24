@@ -12,6 +12,7 @@ export const JadwaliProvider = ({ children }) => {
     registeredCourses: [],
     intensiveSections:[],
     availableSchedules:[],
+    pinnedSections:[],
     colors: [
       "border-red-500",
       "border-blue-500",

@@ -3,7 +3,7 @@ import gif from "../assests/searchAnif4.gif";
 import filter from "../assests/filter.png";
 import schedule from "../assests/sch2.png";
 import { Link } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 import Container from "./Home/Container";
 
@@ -15,7 +15,7 @@ function Home() {
           
           <div className="mt-4 md:mt-0">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold  text-white">
-              جدولك الدراسي افضل شيئ بلدنيا هاهاها
+              Setting your Schedule has never been easier.
             </h2>
             <p className="mb-2 font-light  md:text-lg text-gray-400">
               
@@ -45,7 +45,7 @@ function Home() {
       </section>
 
 
-      <div
+      <div 
         id="search"
         className="   py-6 bg-slate-800   ">
         <Container

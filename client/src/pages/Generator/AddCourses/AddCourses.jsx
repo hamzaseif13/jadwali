@@ -15,7 +15,7 @@ function AddCourses() {
     endTime,
     days,
     loading,
-    dispatch,
+    dispatch,colors
   } = useContext(JadwaliContext);
   const [date, setDate] = useState({
     days: 0,
@@ -25,9 +25,11 @@ function AddCourses() {
   });
 
   useEffect(() => {
+    const localCourses= JSON.parse(localStorage.getItem("registeredCourses"))
+    localCourses.forEach((course,index)=>{course.color=colors[index]})
     dispatch({
       type: "SET_REG",
-      payload: JSON.parse(localStorage.getItem("registeredCourses")) || [],
+      payload:localCourses || [],
     });
     const fetchDate = async () => {
       const date = await fetch("/api/v1/last_updated");
@@ -61,8 +63,8 @@ function AddCourses() {
     dispatch({ type: "SET_GEN_AVAL", payload: availableSchedules });
     dispatch({ type: "SET_GEN", payload: results });
     dispatch({ type: "SET_LOADING", payload: false });
-    dispatch({ type: "SET_ACTIVE_TAB", payload: 3 });
     dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
+    dispatch({ type: "SET_ACTIVE_TAB", payload: 3 });
   };
   if (loading) return <Loading color="#343A40" />;
   /**

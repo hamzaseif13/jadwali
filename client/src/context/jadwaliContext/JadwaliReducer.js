@@ -45,6 +45,9 @@
         case "SET_SHOW_ALL":return{
             ...state, showAll: action.payload
         }
+        case 'SET_PINNED_SECTIONS':return{
+            ...state, pinnedSections: action.payload
+        }
         default:;
        
     }

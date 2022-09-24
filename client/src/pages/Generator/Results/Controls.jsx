@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import { HeartIcon, TrashIcon } from "@heroicons/react/solid";
+import {toast} from 'react-toastify'
 function Controls({
   activeSchedule,
   total,
@@ -55,7 +56,7 @@ function Controls({
               <HeartIcon
                 className="w-8 hover:text-red-500"
                 color="gray"
-                onClick={addLocalStorage}
+                onClick={()=>{addLocalStorage();toast.success("Added to favorites",{autoClose:2000})}}
               />
             </button>
           )}

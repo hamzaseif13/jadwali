@@ -12,9 +12,29 @@ function Results() {
     registeredCourses,
     favoriteCourses,
     availableSchedules,
-    showAll,
+    showAll,pinnedSections
   } = useContext(JadwaliContext);
-  let schedules = showAll ? generatedSchedules : availableSchedules;
+  var schedules=[]
+  const getSchedulesWithPinnedSections= (schs)=>{
+    const pinnedIds= pinnedSections.map(section=>section.id)
+     return schs.filter((schedule) => pinnedIds.every(id=>schedule.map(section=>section.id).includes(id)))
+  }
+  if (pinnedSections.length > 0){
+    if(showAll){
+      schedules = getSchedulesWithPinnedSections(generatedSchedules)
+    }
+    else{
+      schedules= getSchedulesWithPinnedSections(availableSchedules)
+    }
+  }
+  else {
+    if(showAll){
+      schedules = generatedSchedules
+    }
+    else{
+      schedules=availableSchedules
+    }
+  }
   if (schedules.length === 0)
     return (
       <>

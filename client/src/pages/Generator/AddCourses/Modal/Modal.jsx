@@ -7,7 +7,7 @@ function Modal({ close, modalOpen, course }) {
   useEffect(() => {
     const fetchSections = async () => {
       const data = await fetch(
-        `http://localhost:5050/api/v1/sections/${course.lineNumber}`
+        `/api/v1/sections/${course.lineNumber}`
       );
       const d = await data.json();
       setSections(d);
