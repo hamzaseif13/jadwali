@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Icon from "./Icon";
 function Navbar() {
   const [open, setOpen] = React.useState(false);
   const toggleHidden = () => {
     setOpen(!open);
   };
+
+  
 
   return (
     <nav
@@ -73,6 +74,7 @@ function Navbar() {
       </div>
     </nav>
   );
+
 }
 
 export default Navbar;
