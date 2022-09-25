@@ -7,7 +7,8 @@ function FeedBack() {
   const email = useRef();
   const message = useRef();
   const subject = useRef();
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+e.preventDefault()
     setSuccesfully(null)
     setSubmiting(true);
     const emailData = email.current.value;

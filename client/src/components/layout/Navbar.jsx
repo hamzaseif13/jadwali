@@ -3,60 +3,73 @@ import { Link } from "react-router-dom";
 import Icon from "./Icon";
 function Navbar() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
+  const toggleHidden = () => {
     setOpen(!open);
   };
 
   return (
-    <nav className=" px-2 sm:px-4 py-2.5 bg-gray-900  w-full z-20 top-0 left-0 border-b border-gray-600">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
+    <nav
+      className="
+          flex flex-wrap
+          items-center
+          justify-between
+          w-full
+          py-4
+          sm:px-10 lg:px-20
+          text-lg text-white bg-gray-900 border-b border-gray-600 
+        ">
+      <div id="logo">
         <Link to="/">
-          <div className="flex">
-            
-            <span className="self-center   text-4xl  whitespace-nowrap text-white">
-              Jadwali
-            </span>
-          </div>
+          <span className="text-4xl ml-2 md:ml-0">Jadwali </span>
         </Link>
-        <div className="flex md:order-2 md:hidden">
-          <button
-            data-collapse-toggle="navbar-sticky"
-            onClick={handleOpen}
-            type="button"
-            className="inline-flex items-center p-2 text-sm  rounded-lg md:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
-            aria-controls="navbar-sticky"
-            aria-expanded="false">
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-6 h-6"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"></path>
-            </svg>
-          </button>
-        </div>
-        <div
-          className={`${
-            open ? "" : "hidden"
-          }  w-full md:flex md:w-auto md:order-1`}
-          id="navbar-sticky">
-          <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      </div>
+
+      <svg
+        onClick={toggleHidden}
+        xmlns="http://www.w3.org/2000/svg"
+        id="menu-button"
+        className="h-6 w-6 cursor-pointer md:hidden block mr-2 md:mr-0"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+
+      <div
+        className={`${
+          !open ? "" : "hidden"
+        } w-full md:flex md:items-center md:w-auto ml-2 md:ml-0 `}
+        id="menu">
+        <ul
+          className="
+              pt-4
+              text-base text-gray-400
+              md:flex
+              md:justify-between 
+              md:pt-0">
+          
+          
+           <li className='block py-2 md:py-0 md:px-4 hover:text-gray-50'>
+            <Link to="/">
+              <span className="">Home</span>
+            </Link>
+          </li>
+          <li className='block py-2 md:py-0 md:px-4 hover:text-gray-50'>
             <Link to="/feedback">
-              <li className="text-gray-400 hover:text-gray-300">Contact us</li>
+              <span className="">Contact us</span>
             </Link>
-            <Link to="/how-to-use">
-              <li className="text-gray-400 hover:text-gray-300">How to use</li>
-            </Link>
+          </li>
+          <li className='block py-2 md:py-0 md:px-4 hover:text-gray-50'>
             <Link to="/generate">
-              <li className="text-white  hover:text-green-500">Generate</li>
+              <span className="text-gray-300">Generate</span>
             </Link>
-          </ul>
-        </div>
+          </li>
+        </ul>
       </div>
     </nav>
   );

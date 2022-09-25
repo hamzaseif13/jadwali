@@ -76,8 +76,7 @@ function AddCourses() {
   return (
     <div className="mt-2 " id="addCourseTab">
       <div
-        className="  mx-2  p-2 rounded text-gray-400 sm:ml-10 md:ml-40
-sm:mr-10 md:mr-40 bg-[#142652]  shadow-xl text-center my-3">
+        className="  mx-2  p-2 rounded text-gray-400  bg-[#142652]  shadow-xl text-center my-3">
         <h1>
           Last updated :
           <span className="text-[#ca9f28] ">

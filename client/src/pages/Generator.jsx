@@ -24,9 +24,9 @@ function Generator() {
     }
   };
   return (
-    <div className="  pb-20 ">
+    <div className="  pb-20 sm:mx-10 lg:mx-20  ">
       <div className=' text-white mt-4'>
-        <h1 className=" text-2xl  text-white   ml-3 md:ml-40 sm:ml-10 ">
+        <h1 className=" text-2xl  text-white ml-2 md:ml-0  ">
           Generator
         </h1>
         

@@ -9,7 +9,7 @@ import Container from "./Home/Container";
 
 function Home() {
   return (
-    <div className=" bg-slate-900 ">
+    <div className=" bg-slate-900 pb-20 sm:mx-10 lg:mx-20 ">
       <section className="bg-gray-900 ">
         <div className="gap-8 items-center py-2 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
           
@@ -47,7 +47,7 @@ function Home() {
 
       <div 
         id="search"
-        className="   py-6 bg-slate-800   ">
+        className="   py-6 bg-slate-800 fully-bleed  ">
         <Container
           gif={gif}
           id="search"
