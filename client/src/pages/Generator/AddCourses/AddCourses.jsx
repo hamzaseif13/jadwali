@@ -25,7 +25,7 @@ function AddCourses() {
   });
 
   useEffect(() => {
-    const localCourses= JSON.parse(localStorage.getItem("registeredCourses"))
+    const localCourses= JSON.parse(localStorage.getItem("registeredCourses"))||[]
     localCourses.forEach((course,index)=>{course.color=colors[index]})
     dispatch({
       type: "SET_REG",
