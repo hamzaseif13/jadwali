@@ -14,7 +14,7 @@ function App() {
       <JadwaliProvider>
         <Router>
         <Navbar />
-        <ToastContainer position="top-center"/>
+        <ToastContainer position="top-center"  toastStyle={{backgroundColor:"#142652",color:"white"}}/>
           <Routes>
             <Route path='/' excat element={<Home />} />
             <Route path='/generate' element={<Generator />} />

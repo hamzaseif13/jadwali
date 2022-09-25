@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Sch } from "@heroicons/react/solid";
 function Navbar() {
   const [open, setOpen] = React.useState(false);
   const toggleHidden = () => {
     setOpen(!open);
   };
-
-  
 
   return (
     <nav
@@ -21,7 +20,61 @@ function Navbar() {
         ">
       <div id="logo">
         <Link to="/">
-          <span className="text-4xl ml-2 md:ml-0">Jadwali </span>
+          <div className="ml-4 md:ml-0 flex items-center hover:text-gray-500">
+            <span className="text-4xl mr-2">Jadwali</span>
+            <svg
+              width="40px"
+              height="40px"
+              viewBox="0 0 24 24"
+              color="white"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9 20H6C3.79086 20 2 18.2091 2 16V7C2 4.79086 3.79086 3 6 3H17C19.2091 3 21 4.79086 21 7V10"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8 2V4"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15 2V4"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M2 8H21"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M18.5 15.6429L17 17.1429"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle
+                cx="17"
+                cy="17"
+                r="5"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </Link>
       </div>
 
@@ -43,7 +96,7 @@ function Navbar() {
 
       <div
         className={`${
-          !open ? "" : "hidden"
+          open ? "" : "hidden"
         } w-full md:flex md:items-center md:w-auto ml-2 md:ml-0 `}
         id="menu">
         <ul
@@ -53,19 +106,17 @@ function Navbar() {
               md:flex
               md:justify-between 
               md:pt-0">
-          
-          
-           <li className='block py-2 md:py-0 md:px-4 hover:text-gray-50'>
+          <li className="block py-2 md:py-0 md:px-4 hover:text-gray-50">
             <Link to="/">
               <span className="">Home</span>
             </Link>
           </li>
-          <li className='block py-2 md:py-0 md:px-4 hover:text-gray-50'>
+          <li className="block py-2 md:py-0 md:px-4 hover:text-gray-50">
             <Link to="/feedback">
               <span className="">Contact us</span>
             </Link>
           </li>
-          <li className='block py-2 md:py-0 md:px-4 hover:text-gray-50'>
+          <li className="block py-2 md:py-0 md:px-4 hover:text-gray-50">
             <Link to="/generate">
               <span className="text-gray-300">Generate</span>
             </Link>
@@ -74,7 +125,6 @@ function Navbar() {
       </div>
     </nav>
   );
-
 }
 
 export default Navbar;

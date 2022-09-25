@@ -44,7 +44,6 @@ function Home() {
         </div>
       </section>
 
-
       <div 
         id="search"
         className="   py-6 bg-slate-800 fully-bleed  ">

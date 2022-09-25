@@ -1,20 +1,25 @@
 import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import { HeartIcon, TrashIcon } from "@heroicons/react/solid";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 function Controls({
   activeSchedule,
   total,
   prev,
   next,
   schedule,
-  addLocalStorage,
+  toggleFavorite,
   favorite = false,
   removeFavorite,
-
+  isFavorite
 }) {
   const { dispatch, showAll } = useContext(JadwaliContext);
+  const toggleFavoriteHandler = () => {
+    toggleFavorite();
+    
+    toast.success(`${isFavorite(schedule)?"Removed from favorites":"Added to favorites"}`, { autoClose: 2000 });
 
+  };
   const setShow = () => {
     dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
     dispatch({ type: "SET_SHOW_ALL", payload: !showAll });
@@ -55,8 +60,8 @@ function Controls({
             <button className="border border-t-0 border-b-0  border-mylight border-r-0 ">
               <HeartIcon
                 className="w-8 hover:text-red-500"
-                color="gray"
-                onClick={()=>{addLocalStorage();toast.success("Added to favorites",{autoClose:2000})}}
+                color={`${isFavorite(schedule)? "red" : "gray"}`}
+                onClick={toggleFavoriteHandler}
               />
             </button>
           )}

@@ -40,13 +40,13 @@
             ...state, selectedDepartment: action.payload
         }
         case "SET_GEN_AVAL":return{
-            ...state, availableSchedules: action.payload
+            ...state, availableSchedules: action.payload,activeSchedule:0
         }
         case "SET_SHOW_ALL":return{
-            ...state, showAll: action.payload
+            ...state, showAll: action.payload,activeSchedule:0
         }
         case 'SET_PINNED_SECTIONS':return{
-            ...state, pinnedSections: action.payload
+            ...state, pinnedSections: action.payload,activeSchedule:0
         }
         default:;
        

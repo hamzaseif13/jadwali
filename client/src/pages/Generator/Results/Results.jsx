@@ -12,40 +12,43 @@ function Results() {
     registeredCourses,
     favoriteCourses,
     availableSchedules,
-    showAll,pinnedSections
+    showAll,
+    pinnedSections,
   } = useContext(JadwaliContext);
-  var schedules=[]
-  const getSchedulesWithPinnedSections= (schs)=>{
-    const pinnedIds= pinnedSections.map(section=>section.id)
-     return schs.filter((schedule) => pinnedIds.every(id=>schedule.map(section=>section.id).includes(id)))
-  }
-  if (pinnedSections.length > 0){
-    if(showAll){
-      schedules = getSchedulesWithPinnedSections(generatedSchedules)
+  var schedules = [];
+  const getSchedulesWithPinnedSections = (schs) => {
+    const pinnedIds = pinnedSections.map((section) => section.id);
+    return schs.filter((schedule) =>
+      pinnedIds.every((id) =>
+        schedule.map((section) => section.id).includes(id)
+      )
+    );
+  };
+  if (pinnedSections.length > 0) {
+    if (showAll) {
+      schedules = getSchedulesWithPinnedSections(generatedSchedules);
+    } else {
+      schedules = getSchedulesWithPinnedSections(availableSchedules);
     }
-    else{
-      schedules= getSchedulesWithPinnedSections(availableSchedules)
-    }
-  }
-  else {
-    if(showAll){
-      schedules = generatedSchedules
-    }
-    else{
-      schedules=availableSchedules
+  } else {
+    if (showAll) {
+      schedules = generatedSchedules;
+    } else {
+      schedules = availableSchedules;
     }
   }
   if (schedules.length === 0)
     return (
       <>
-      <Controls
-        showAll={showAll}
-        prev={()=>{}}
-        next={()=>{}}
-        total={0}
-        activeSchedule={-1}
-      />
-        <NoResults text="There are no Results with the selected time and days"/>
+        <Controls
+          showAll={showAll}
+          prev={() => {}}
+          next={() => {}}
+          total={0}
+          activeSchedule={-1}
+          isFavorite={() => {}}
+        />
+        <NoResults text="There are no Results with the selected time and days" />
       </>
     );
   const schedule = schedules[activeSchedule] || [];
@@ -60,23 +63,79 @@ function Results() {
     }
   };
 
-  const addLocalStorage = () => {
-    dispatch({
-      type: "SET_FAVORITE_SCHEDULES",
-      payload: [...favoriteSchedules, schedules[activeSchedule]],
-    });
-    localStorage.setItem(
-      "favoriteSchedules",
-      JSON.stringify([...favoriteSchedules, schedules[activeSchedule]])
+  const isFavorite = (sschedule) => {
+    const schIds = sschedule
+      .map((section) => section.id)
+      .sort()
+      .join();
+    return favoriteSchedules.some(
+      (sch) =>
+        sch
+          .map((section) => section.id)
+          .sort()
+          .join() === schIds
     );
-    dispatch({
-      type: "SET_FAVORITE_COURSES",
-      payload: [...favoriteCourses, ...registeredCourses],
-    });
-    localStorage.setItem(
-      "favoriteCourses",
-      JSON.stringify([...favoriteCourses, ...registeredCourses])
-    );
+  };
+  const toggleFavorite = () => {
+    if (isFavorite(schedule)) {
+      const filterdSchedules =favoriteSchedules.filter(
+        (sch) =>
+          sch
+            .map((section) => section.id)
+            .sort()
+            .join() !==
+          schedules[activeSchedule]
+            .map((section) => section.id)
+            .sort()
+            .join()
+      )
+      dispatch({
+        type: "SET_FAVORITE_SCHEDULES",
+        payload:filterdSchedules
+        
+      });
+      localStorage.setItem(
+        "favoriteSchedules",
+        JSON.stringify(filterdSchedules)
+      );
+      let flag = false
+      const filterdFavorite = favoriteCourses.filter((course) => {
+        if(!flag){
+            if( schedules[activeSchedule].some(sec=>sec.line_number === course.line_number)){
+              flag=true
+              return false
+            }
+        }
+        return true
+      })
+      dispatch({
+        type: "SET_FAVORITE_COURSES",
+        payload: [...filterdFavorite],
+      });
+      localStorage.setItem(
+        "favoriteCourses",
+        JSON.stringify([...filterdFavorite])
+      );
+
+    } else {
+
+      dispatch({
+        type: "SET_FAVORITE_SCHEDULES",
+        payload: [...favoriteSchedules, schedules[activeSchedule]],
+      });
+      localStorage.setItem(
+        "favoriteSchedules",
+        JSON.stringify([...favoriteSchedules, schedules[activeSchedule]])
+      );
+      dispatch({
+        type: "SET_FAVORITE_COURSES",
+        payload: [...favoriteCourses, ...registeredCourses],
+      });
+      localStorage.setItem(
+        "favoriteCourses",
+        JSON.stringify([...favoriteCourses, ...registeredCourses])
+      );
+    }
   };
   return (
     <div className="text-white  sm:ml-10 md:ml-26  sm:mr-10 md:mr-26 ">
@@ -85,8 +144,9 @@ function Results() {
         next={next}
         total={schedules.length}
         activeSchedule={activeSchedule}
-        addLocalStorage={addLocalStorage}
+        toggleFavorite={toggleFavorite}
         schedule={schedule}
+        isFavorite={isFavorite}
       />
       <Table schedule={schedule} />
     </div>
