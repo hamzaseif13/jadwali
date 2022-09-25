@@ -18,7 +18,7 @@ function BigSectionBox({ course, section }) {
   }  w-full  
 border-l-[6px] border rounded-t rounded-l  height${
     (endTime - startTime) * 10
-  } h-100 overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0  ${emptySeats<=0?"bg-red-500":"bg-gray-500 "}`;
+  } h-100 overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0  ${emptySeats<=0?"bg-striped-red":"bg-gray-500 "}`;
   return (
     <div onClick={() => setIsOpen(true)} className={style}>
         {pinnedSections.some(sec=>sec.id===section.id)&&

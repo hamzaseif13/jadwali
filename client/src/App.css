@@ -1,0 +1,3 @@
+.bg-striped-red {
+    background: repeating-linear-gradient(45deg, #e66465, #e66465 10px, #ff9999 10px, #ff9999 20px);
+}

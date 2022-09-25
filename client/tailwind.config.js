@@ -3,14 +3,14 @@ module.exports = {
     'text-red-400',
     'text-orange-400',
     'text-green-400',
-    
+
   ],
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     screens: {
-      'xsm':"400px",
+      'xsm': "400px",
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
@@ -26,11 +26,13 @@ module.exports = {
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {colors:{
-      mydark:"#191d21",
-      mylight:"#343A40",
-      overlay:'rgba(0,0,0,0.5)'
-    }},
+    extend: {
+      colors: {
+        mydark: "#191d21",
+        mylight: "#343A40",
+        overlay: 'rgba(0,0,0,0.5)'
+      }
+    },
   },
-  plugins: [ require('tailwindcss-rtl'),],
+  plugins: [require('tailwindcss-rtl'),],
 }
