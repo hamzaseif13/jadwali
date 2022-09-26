@@ -5,7 +5,7 @@ function BigSectionBox({ course, section }) {
   const {  pinnedSections } = useContext(JadwaliContext);
   let { startTime, endTime } = section;
   let color = course.color;
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false)
   const doubleToStringTime = (time) => {
     const str = time.toString().split(".");
     let hours = str[0];
@@ -20,16 +20,16 @@ border-l-[6px] border rounded-t rounded-l  height${
     (endTime - startTime) * 10
   } h-100 overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0 ${emptySeats<=0?"bg-[#806b6b]":"bg-gray-500"}`;
   return (
-    <div onClick={() => setIsOpen(true)} className={style}>
+    <div onClick={() => setModalOpen(true)} className={style}>
         {pinnedSections.some(sec=>sec.id===section.id)&&
       <div className='w-4 rounded-full h-4 bg-yellow-500 absolute -top-1  -right-1'>
       </div>
       }
       <div className="">
-        {isOpen && (
+        {modalOpen && (
           <Modal
-            close={() => setIsOpen(false)}
-            isOpen={isOpen}
+          
+          modalOpen={modalOpen} close={()=>setModalOpen(false)}
             section={section}
             course={course}
           />

@@ -14,6 +14,7 @@ function Section({section,course,close}) {
         });
         dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
         toast.success("UnPinned section successfully", { autoClose: 2000 });
+        localStorage.setItem("pinnedSections", JSON.stringify(pinnedSections.filter(sect=>sect.id!==section.id)))
         close();
       } else {      
         dispatch({
@@ -21,6 +22,7 @@ function Section({section,course,close}) {
           payload: [...pinnedSections, section],
         });
         dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
+        localStorage.setItem("pinnedSections", JSON.stringify([...pinnedSections,section]))
         toast.success("Pinned section successfully", { autoClose: 2000,});
         close();
       }

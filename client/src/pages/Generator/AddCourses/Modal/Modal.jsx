@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { toast } from "react-toastify";
-import { ClipboardCopyIcon} from "@heroicons/react/solid";
 import JadwaliContext from "../../../../context/jadwaliContext/JadwaliContext";
-import Section from "../../Results/Section";
 
 function Modal({ close, modalOpen, course }) {
   const [sections, setSections] = React.useState([]);
@@ -14,16 +12,41 @@ function Modal({ close, modalOpen, course }) {
         type: "SET_PINNED_SECTIONS",
         payload: pinnedSections.filter((sec) => sec.id !== section.id),
       });
-      dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
+
       toast.success("UnPinned section successfully", { autoClose: 2000 });
+      localStorage.setItem(
+        "pinnedSections",
+        JSON.stringify(pinnedSections.filter((sect) => sect.id !== section.id))
+      );
     } else {
-      dispatch({
-        type: "SET_PINNED_SECTIONS",
-        payload: [...pinnedSections, section],
-      });
-      dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
-      toast.success("Pinned section successfully", { autoClose: 2000 });
+      if (
+        !pinnedSections.some((sect) => sect.lineNumber === section.lineNumber)
+      ) {
+        dispatch({
+          type: "SET_PINNED_SECTIONS",
+          payload: [...pinnedSections, section],
+        });
+
+        toast.success("Pinned section successfully", { autoClose: 2000 });
+        localStorage.setItem(
+          "pinnedSections",
+          JSON.stringify([...pinnedSections, section])
+        );
+      } else {
+        const filterdPinned = [
+          ...pinnedSections.filter(
+            (sect) => sect.lineNumber !== section.lineNumber
+          ),
+          section,
+        ];
+        dispatch({
+          type: "SET_PINNED_SECTIONS",
+          payload: filterdPinned,
+        });
+        localStorage.setItem("pinnedSections", JSON.stringify(filterdPinned));
+      }
     }
+    dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
   };
   const handleCopy = () => {
     navigator.clipboard.writeText(course.lineNumber);
@@ -81,7 +104,9 @@ function Modal({ close, modalOpen, course }) {
                   <th scope="col" className="py-3 md:px-2">
                     Symbol
                   </th>
-                  <th scope="col" className="py-3 md:px-2 hidden sm:table-cell ">
+                  <th
+                    scope="col"
+                    className="py-3 md:px-2 hidden sm:table-cell ">
                     Faculty
                   </th>
                   <th scope="col" className="py-3 md:px-2 hidden sm:table-cell">
@@ -99,15 +124,15 @@ function Modal({ close, modalOpen, course }) {
                   <th
                     scope="row"
                     className="py-4 md:px-2  whitespace-nowrap  text-blue-500 ">
-                      <div className="flex justify-center cursor-pointer hover:text-yellow-700 text-lg items-center" onClick={handleCopy}>
-                    {course.lineNumber} 
-                        <span className="text-sm"> - Copy</span>
-                      </div>
+                    <div
+                      className="flex justify-center cursor-pointer hover:text-yellow-700 text-lg items-center"
+                      onClick={handleCopy}>
+                      {course.lineNumber}
+                      <span className="text-sm"> - Copy</span>
+                    </div>
                   </th>
-                  
-                  <td className="py-4 md:px-2">
-                    {course.symbol}
-                  </td>
+
+                  <td className="py-4 md:px-2">{course.symbol}</td>
 
                   <td className="py-4 md:px-2 capitalize hidden sm:table-cell">
                     {course.faculty}
@@ -117,16 +142,19 @@ function Modal({ close, modalOpen, course }) {
                     {course.department}
                   </td>
 
-                  <td className="py-4 md:px-2 ">
-                    {course.creditHours}
-                  </td>
+                  <td className="py-4 md:px-2 ">{course.creditHours}</td>
                 </tr>
               </tbody>
             </table>
           </div>
+          <div className="flex items-center justify-center space-x-3 mb-2">
+              <div className="bg-gray-800  p-1 text-center rounded-lg">Available</div>
+              <div className="bg-yellow-500 p-1 text-center text-black rounded-lg">Full</div>
+              <div className="bg-red-800 p-1 text-center rounded-lg">Cancelled</div>
+          </div>
           <div className="">
             <div className=" shadow-md rounded-lg ">
-              <table className="w-full text-sm text-center  text-gray-400  rounded">
+              <table className="w-full text-sm sm:text-base text-center   text-gray-400  rounded">
                 <thead className=" text-sm sm:text-base    bg-mydark text-gray-400">
                   <tr>
                     <th scope="col" className="py-3 md:px-2 rounded-tl">
@@ -154,10 +182,17 @@ function Modal({ close, modalOpen, course }) {
                 <tbody>
                   {sections.length ? (
                     sections.map((section) => (
-                      <tr className=" border-b bg-gray-800 border-gray-700 ">
+                      <tr
+                        className={`border-b text-white border-gray-700 bg-gray-800 `}>
                         <th
                           scope="row"
-                          className="py-4 md:px-2  whitespace-nowrap  text-blue-500 text-lg">
+                          className={`py-4 md:px-2  whitespace-nowrap  text-blue-500 text-lg ${
+                            section.status.toLowerCase() === "cancelled"
+                              ? "bg-red-800"
+                              : section.capacity - section.registered > 0
+                              ? "bg-gray-800"
+                              : "bg-yellow-500"
+                          }`}>
                           {section.number}
                         </th>
                         <td className="py-4 md:px-2 capitalize">
@@ -168,7 +203,7 @@ function Modal({ close, modalOpen, course }) {
                           {doubleToStringTime(section.endTime)}
                         </td>
 
-                        <td className="py-4 md:px-2">
+                        <td className={`py-4 md:px-2 `}>
                           {section.capacity - section.registered}
                         </td>
                         <td className="py-4 md:px-2 hidden md:block">

@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
-import { TrashIcon,InformationCircleIcon, } from "@heroicons/react/solid";
 import Modal from "./Modal/Modal";
 function Course({ course }) {
-  const { dispatch, registeredCourses } = useContext(JadwaliContext);
+  const { dispatch, registeredCourses, pinnedSections } = useContext(JadwaliContext);
   const [modalOpen, setModalOpen] = React.useState(false);
   const removeCourse = () => {
-    console.log("sadasd")
     const newRegisteredCourses = registeredCourses.filter(
       (crs) => crs !== course
     );
     dispatch({ type: "SET_REG", payload: newRegisteredCourses });
     dispatch({ type: "SET_GEN", payload: [] });
     dispatch({ type: "SET_ACTIVE_SCHEDULE", payload:0 });
+    dispatch({ type: "SET_PINNED_SECTIONS", payload:pinnedSections.filter(sect=>sect.lineNumber!==course.lineNumber) });
     localStorage.setItem("registeredCourses", JSON.stringify(newRegisteredCourses));
   };
   

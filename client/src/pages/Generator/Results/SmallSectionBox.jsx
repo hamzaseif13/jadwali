@@ -13,7 +13,7 @@ function SmallSectionBox({ course, section }) {
       (endTime - startTime) * 10
     } text-left  overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0  
     ${emptySeats<=0?"bg-[#806b6b]":"bg-gray-500"}`;
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
  
   const doubleToStringTime = (time) => {
     const str = time.toString().split(".")
@@ -23,7 +23,7 @@ function SmallSectionBox({ course, section }) {
   };
 
   return (
-    <div className={style} onClick={()=>setIsOpen(true)}>
+    <div className={style} onClick={()=>setModalOpen(true)}>
       {pinnedSections.some(sec=>sec.id===section.id)&&
       <div className='w-4 rounded-full h-4 bg-yellow-500 absolute -top-1  -right-1'>
       </div>
@@ -34,7 +34,15 @@ function SmallSectionBox({ course, section }) {
         text-mylight sm:text-center sm:text-lg ">
           {course.symbol.toUpperCase()}
         </h1>
-        <Modal section={section} close={()=>setIsOpen(false)} course={course} isOpen={isOpen}/>
+        
+        {modalOpen && (
+          <Modal
+          
+          modalOpen={modalOpen} close={()=>setModalOpen(false)}
+            section={section}
+            course={course}
+          />
+        )}
         <h1 className="text-[0.7rem]  text-center sm:text-[1rem] ">
           {doubleToStringTime(section.startTime)}-{doubleToStringTime(section.endTime)}&nbsp;({section.number})
         </h1>

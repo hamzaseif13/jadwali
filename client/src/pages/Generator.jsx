@@ -7,7 +7,7 @@ import JadwaliContext from "../context/jadwaliContext/JadwaliContext";
 import { useContext, useEffect, useState } from "react";
 import Favorites from "./Generator/Favorites/Favorites";
 function Generator() {
- 
+  document.title = "Jadwali | Generator";
   const { activeTab } = useContext(JadwaliContext);
   const renderActiveTap = () => {
     switch (activeTab) {

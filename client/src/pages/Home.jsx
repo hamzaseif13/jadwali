@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Container from "./Home/Container";
 
 function Home() {
+  document.title="Jadwali | Home";
   return (
     <div className=" bg-slate-900 pb-20 sm:mx-10 lg:mx-20 ">
       <section className="bg-gray-900 ">

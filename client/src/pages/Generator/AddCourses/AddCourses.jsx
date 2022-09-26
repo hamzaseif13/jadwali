@@ -31,6 +31,7 @@ function AddCourses() {
       type: "SET_REG",
       payload:localCourses || [],
     });
+    dispatch({type:"SET_PINNED_SECTIONS",payload:JSON.parse(localStorage.getItem("pinnedSections"))||[]})
     const fetchDate = async () => {
       const date = await fetch("/api/v1/last_updated");
       const dateJson = await date.json();
@@ -41,7 +42,8 @@ function AddCourses() {
       setDate({ seconds, minutes, hours, days });
     };
     fetchDate();
-  }, []);
+  }, []
+  );
   const generate = async () => {
     if (registeredCourses.length === 0) return;
     dispatch({ type: "SET_LOADING", payload: true });
