@@ -43,6 +43,7 @@ function Modal({ close, modalOpen, course }) {
           type: "SET_PINNED_SECTIONS",
           payload: filterdPinned,
         });
+        toast.success("Pinned section successfully", { autoClose: 2000 });
         localStorage.setItem("pinnedSections", JSON.stringify(filterdPinned));
       }
     }
@@ -148,8 +149,8 @@ function Modal({ close, modalOpen, course }) {
             </table>
           </div>
           <div className="flex items-center justify-center space-x-3 mb-2">
-              <div className="bg-gray-800  p-1 text-center rounded-lg">Available</div>
-              <div className="bg-yellow-500 p-1 text-center text-black rounded-lg">Full</div>
+              <div className="bg-green-700 p-1 text-center rounded-lg">Available</div>
+              <div className="bg-[#e1ad01] p-1 text-center text-black rounded-lg">Full</div>
               <div className="bg-red-800 p-1 text-center rounded-lg">Cancelled</div>
           </div>
           <div className="">
@@ -186,12 +187,12 @@ function Modal({ close, modalOpen, course }) {
                         className={`border-b text-white border-gray-700 bg-gray-800 `}>
                         <th
                           scope="row"
-                          className={`py-4 md:px-2  whitespace-nowrap  text-blue-500 text-lg ${
+                          className={`py-4 md:px-2 border-0 whitespace-nowrap  text-white text-lg ${
                             section.status.toLowerCase() === "cancelled"
                               ? "bg-red-800"
                               : section.capacity - section.registered > 0
-                              ? "bg-gray-800"
-                              : "bg-yellow-500"
+                              ? "bg-green-700"
+                              : "bg-[#e1ad01]"
                           }`}>
                           {section.number}
                         </th>

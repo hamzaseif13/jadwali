@@ -20,13 +20,29 @@ function Options() {
     courses.push(course.lineNumber);
   });
   const generate = async () => {
-    dispatch({type:"SET_LOADING",payload:true})
-    const schedules = await fetchSchedules(registeredCourses.map(c=>c.lineNumber),minNumberOfDays, startTime, endTime, days);
-    dispatch({ type: "SET_GEN", payload: schedules });
-    dispatch({type:"SET_LOADING",payload:false})
-    dispatch({type:"SET_ACTIVE_TAB",payload:3})
-    dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
-  };
+    if (registeredCourses.length === 0) return;
+    dispatch({ type: "SET_LOADING", payload: true });
+    const results = await fetchSchedules(
+      registeredCourses.map((c) => c.lineNumber),
+      minNumberOfDays,
+      startTime,
+      endTime,
+      days
+    );
+
+    const availableSchedules = results.filter((schedule) => {
+      let t = true;
+      schedule.forEach((section) => {
+        if (section.registered >= section.capacity) t = false;
+      });
+      return t;
+    });
+    dispatch({ type: "SET_GEN_AVAL", payload: availableSchedules });
+    dispatch({ type: "SET_GEN", payload: results });
+    dispatch({ type: "SET_LOADING", payload: false });
+    dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
+    dispatch({ type: "SET_ACTIVE_TAB", payload: 3 });
+  }
   if(loading)return <Loading />;
   return (
     

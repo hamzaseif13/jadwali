@@ -22,7 +22,7 @@ border-l-[6px] border rounded-t rounded-l  height${
   return (
     <div onClick={() => setModalOpen(true)} className={style}>
         {pinnedSections.some(sec=>sec.id===section.id)&&
-      <div className='w-4 rounded-full h-4 bg-yellow-500 absolute -top-1  -right-1'>
+      <div className='w-4 rounded-full h-4 bg-yellow-500 absolute -top-1 -right-1'>
       </div>
       }
       <div className="">

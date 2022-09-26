@@ -6,6 +6,7 @@ import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import Loading from "../../../components/layout/Loading";
 import DepartmentSearch from "./DepartmentSearch";
 import { fetchSchedules } from "../../../context/jadwaliContext/JadwaliActions";
+import Reset from "./Reset";
 
 function AddCourses() {
   const {
@@ -44,7 +45,8 @@ function AddCourses() {
     fetchDate();
   }, []
   );
-  const generate = async () => {
+
+   const generate = async () => {
     if (registeredCourses.length === 0) return;
     dispatch({ type: "SET_LOADING", payload: true });
     const results = await fetchSchedules(
@@ -69,6 +71,11 @@ function AddCourses() {
     dispatch({ type: "SET_ACTIVE_TAB", payload: 3 });
   };
   if (loading) return <Loading color="#343A40" />;
+  const reset=()=>{
+    dispatch({type:"RESET"})
+    localStorage.clear()
+    dispatch({type:"RESET"})
+  }
   /**
    * text-sm font-medium text-center sm:ml-10 md:ml-40
  mt- text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700
@@ -94,9 +101,9 @@ function AddCourses() {
       <SearchBox />
       <div className="flex flex-col-reverse sm:flex-col ">
         <CourseWrapper />
-        <div className="sm:my-2 sm:mt-1 mt-2 text-white flex flex-row justify-start ml-3 sm:justify-center">
+        <div className="sm:my-2 sm:mt-1 mt-2 text-white flex flex-row justify-start ml-3 space-x-2 sm:justify-center">
           <button
-            className="mr-2 shadow-lg bg-green-800 p-2 rounded hover:bg-green-900"
+            className=" shadow-lg bg-green-800 p-2 rounded hover:bg-green-900"
             onClick={generate}>
             Generate
           </button>
@@ -105,6 +112,8 @@ function AddCourses() {
             onClick={() => dispatch({ type: "SET_ACTIVE_TAB", payload: 2 })}>
             filter
           </button>
+          
+          <button className='bg-gray-700 p-2 rounded hover:bg-gray-600' onClick={reset}>Reset All Settings</button>
         </div>
       </div>
     </div>

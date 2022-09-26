@@ -14,10 +14,12 @@ function Course({ course }) {
     dispatch({ type: "SET_PINNED_SECTIONS", payload:pinnedSections.filter(sect=>sect.lineNumber!==course.lineNumber) });
     localStorage.setItem("registeredCourses", JSON.stringify(newRegisteredCourses));
   };
-  
+  const isCoursePinned = ()=> {
+    return pinnedSections.some(sect=>sect.lineNumber===course.lineNumber)
+  }
   return (
-    <div className="shadow-lg   text-white mx-2 w-[95%] sm:w-[380px] p-2 my-1 rounded bg-gray-800">
-      <div className="flex justify-between items-start"> 
+    <div className={`${isCoursePinned()?"border-l-[6px]  border-l-yellow-600 ":""}shadow-lg relative  text-white mx-2 w-[95%] sm:w-[380px] p-2 my-1 rounded bg-gray-800`}>
+      <div className="flex  justify-between items-start"> 
       <h1 className="capitalize text-lg">{course.name}</h1>
       <button onClick={removeCourse} className=' top-1 right-2 text-2xl text-red-600'>&#10006;</button>
       </div>
