@@ -133,7 +133,7 @@ function Modal({ close, modalOpen, course }) {
                     </div>
                   </th>
 
-                  <td className="py-4 md:px-2">{course.symbol}</td>
+                  <td className="py-4 md:px-2">{course.symbol.toUpperCase()}</td>
 
                   <td className="py-4 md:px-2 capitalize hidden sm:table-cell">
                     {course.faculty}

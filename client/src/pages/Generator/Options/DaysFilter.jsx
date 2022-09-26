@@ -26,10 +26,10 @@ function DaysFilter() {
                     <button onClick={() => handleClick("tue")} className={`rounded  p-2 ${days.includes("tue") ? 'bg-blue-700 hover:bg-blue-800' : ''}`}>Tuesday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("wed")} className={`rounded  p-2 ${days.includes("wed") ? 'bg-blue-700 hover:bg-blue-800' : ''}`}>wedesday</button>
+                    <button onClick={() => handleClick("wed")} className={`rounded  p-2 ${days.includes("wed") ? 'bg-blue-700 hover:bg-blue-800' : ''}`}>Wedesday</button>
                 </div>
                 <div className="ml-2 mb-1">
-                    <button onClick={() => handleClick("thu")} className={`rounded  p-2 ${days.includes("thu") ? 'bg-blue-700 hover:bg-blue-800' : ''}`}>thursday</button>
+                    <button onClick={() => handleClick("thu")} className={`rounded  p-2 ${days.includes("thu") ? 'bg-blue-700 hover:bg-blue-800' : ''}`}>Thursday</button>
                 </div>
             </div>
         </div>

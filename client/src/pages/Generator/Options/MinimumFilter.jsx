@@ -13,7 +13,7 @@ function MinimumFilter() {
   };
   return (
     <div className="mt-2 text-center flex justify-center flex-col items-center">
-      <h1>Choose minimum number of days per week</h1>
+      {/* <h1>Choose minimum number of days per week</h1>
       <div>
         <button
           className={`rounded ml-2 ${
@@ -38,7 +38,8 @@ function MinimumFilter() {
           onClick={() => handleChange(1)}>
           +
         </button>
-      </div>
+      </div> 
+          this is not working properly, so I am commenting it out for now*/}
     </div>
   );
 }

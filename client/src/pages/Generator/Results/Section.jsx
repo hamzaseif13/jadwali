@@ -45,7 +45,7 @@ function Section({section,course,close}) {
           <div className="text-blue-400">
             <div className="flex ">
               <h2>
-                line number :{" "}
+                Line Number :{" "}
                 <span className="ml-2 mr-2 text-white">
                   {course.lineNumber}
                 </span>

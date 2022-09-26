@@ -110,7 +110,7 @@ function AddCourses() {
           <button
             className="bg-red-600 shadow-lg  p-2 rounded hover:bg-red-800"
             onClick={() => dispatch({ type: "SET_ACTIVE_TAB", payload: 2 })}>
-            filter
+            Filter
           </button>
           
           <button className='bg-gray-700 p-2 rounded hover:bg-gray-600' onClick={reset}>Reset All Settings</button>
