@@ -2,53 +2,13 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { toast } from "react-toastify";
 import JadwaliContext from "../../../../context/jadwaliContext/JadwaliContext";
+import usePinSection from "../../../../hooks/usePinSection";
 
 function Modal({ close, modalOpen, course }) {
   const [sections, setSections] = React.useState([]);
-  const { dispatch, pinnedSections } = React.useContext(JadwaliContext);
-  const pinSection = (section) => {
-    if (pinnedSections.some((sec) => sec.id === section.id)) {
-      dispatch({
-        type: "SET_PINNED_SECTIONS",
-        payload: pinnedSections.filter((sec) => sec.id !== section.id),
-      });
+  const { pinnedSections } = React.useContext(JadwaliContext);
 
-      toast.success("UnPinned section successfully", { autoClose: 2000 });
-      localStorage.setItem(
-        "pinnedSections",
-        JSON.stringify(pinnedSections.filter((sect) => sect.id !== section.id))
-      );
-    } else {
-      if (
-        !pinnedSections.some((sect) => sect.lineNumber === section.lineNumber)
-      ) {
-        dispatch({
-          type: "SET_PINNED_SECTIONS",
-          payload: [...pinnedSections, section],
-        });
-
-        toast.success("Pinned section successfully", { autoClose: 2000 });
-        localStorage.setItem(
-          "pinnedSections",
-          JSON.stringify([...pinnedSections, section])
-        );
-      } else {
-        const filterdPinned = [
-          ...pinnedSections.filter(
-            (sect) => sect.lineNumber !== section.lineNumber
-          ),
-          section,
-        ];
-        dispatch({
-          type: "SET_PINNED_SECTIONS",
-          payload: filterdPinned,
-        });
-        toast.success("Pinned section successfully", { autoClose: 2000 });
-        localStorage.setItem("pinnedSections", JSON.stringify(filterdPinned));
-      }
-    }
-    dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
-  };
+  const {pinSection} = usePinSection(false)
   const handleCopy = () => {
     navigator.clipboard.writeText(course.lineNumber);
     toast.success("Copied to clipboard", { autoClose: 2000 });

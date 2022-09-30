@@ -5,19 +5,13 @@ import CourseWrapper from "./CourseWrapper";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import Loading from "../../../components/layout/Loading";
 import DepartmentSearch from "./DepartmentSearch";
-import { fetchSchedules } from "../../../context/jadwaliContext/JadwaliActions";
-import Reset from "./Reset";
-
+import useGenerate from '../../../hooks/useGenerate'
 function AddCourses() {
   const {
-    registeredCourses,
-    minNumberOfDays,
-    startTime,
-    endTime,
-    days,
     loading,
     dispatch,colors
   } = useContext(JadwaliContext);
+  const {generate} = useGenerate()
   const [date, setDate] = useState({
     days: 0,
     hours: 0,
@@ -46,30 +40,7 @@ function AddCourses() {
   }, []
   );
 
-   const generate = async () => {
-    if (registeredCourses.length === 0) return;
-    dispatch({ type: "SET_LOADING", payload: true });
-    const results = await fetchSchedules(
-      registeredCourses.map((c) => c.lineNumber),
-      minNumberOfDays,
-      startTime,
-      endTime,
-      days
-    );
-
-    const availableSchedules = results.filter((schedule) => {
-      let t = true;
-      schedule.forEach((section) => {
-        if (section.registered >= section.capacity) t = false;
-      });
-      return t;
-    });
-    dispatch({ type: "SET_GEN_AVAL", payload: availableSchedules });
-    dispatch({ type: "SET_GEN", payload: results });
-    dispatch({ type: "SET_LOADING", payload: false });
-    dispatch({ type: "SET_ACTIVE_SCHEDULE", payload: 0 });
-    dispatch({ type: "SET_ACTIVE_TAB", payload: 3 });
-  };
+  
   if (loading) return <Loading color="#343A40" />;
   const reset=()=>{
     dispatch({type:"RESET"})
@@ -104,7 +75,7 @@ function AddCourses() {
         <div className="sm:my-2 sm:mt-1 mt-2 text-white flex flex-row justify-start ml-3 space-x-2 sm:justify-center">
           <button
             className=" shadow-lg bg-green-800 p-2 rounded hover:bg-green-900"
-            onClick={generate}>
+            onClick={()=>generate([])}>
             Generate
           </button>
           <button

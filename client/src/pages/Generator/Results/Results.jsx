@@ -11,7 +11,6 @@ function Results() {
     favoriteSchedules,
     registeredCourses,
     favoriteCourses,
-    availableSchedules,
     showAll,
     pinnedSections,
   } = useContext(JadwaliContext);
@@ -24,10 +23,18 @@ function Results() {
       )
     );
   };
+  const availableSchedules = generatedSchedules.filter((schedule) => {
+    let t = true;
+    schedule.forEach((section) => {
+      if (section.registered >= section.capacity) t = false;
+    });
+    return t;
+  });
   if (pinnedSections.length > 0) {
     if (showAll) {
       schedules = getSchedulesWithPinnedSections(generatedSchedules);
     } else {
+      
       schedules = getSchedulesWithPinnedSections(availableSchedules);
     }
   } else {

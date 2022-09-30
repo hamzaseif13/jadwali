@@ -2,31 +2,12 @@ import { ClipboardCopyIcon } from '@heroicons/react/solid'
 import React, { useContext } from 'react'
 import { toast } from 'react-toastify';
 import JadwaliContext from '../../../context/jadwaliContext/JadwaliContext';
+import usePinSection from '../../../hooks/usePinSection';
 
 function Section({section,course,close}) {
-    const { dispatch, pinnedSections } = useContext(JadwaliContext);
+    const { pinnedSections } = useContext(JadwaliContext);
 
-    const pinSection = () => {
-      if (pinnedSections.some(sec=>sec.id===section.id)) {
-        dispatch({
-          type: "SET_PINNED_SECTIONS",
-          payload: pinnedSections.filter((sec) => sec.id !== section.id),
-        });
-        dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
-        toast.success("UnPinned section successfully", { autoClose: 2000 });
-        localStorage.setItem("pinnedSections", JSON.stringify(pinnedSections.filter(sect=>sect.id!==section.id)))
-        close();
-      } else {      
-        dispatch({
-          type: "SET_PINNED_SECTIONS",
-          payload: [...pinnedSections, section],
-        });
-        dispatch({type:"SET_ACTIVE_SCHEDULE",payload:0})
-        localStorage.setItem("pinnedSections", JSON.stringify([...pinnedSections,section]))
-        toast.success("Pinned section successfully", { autoClose: 2000,});
-        close();
-      }
-    };
+    const {pinSection} = usePinSection(true)
     const handleCopy = () => {
       navigator.clipboard.writeText(course.lineNumber);
       toast.success("Copied to clipboard", { autoClose: 2000 });
@@ -90,7 +71,7 @@ function Section({section,course,close}) {
                 </span>
               </h2>
               <div
-                onClick={pinSection}
+                onClick={()=>{pinSection(section);close()}}
                 className={`${
                   pinnedSections.some((sec) => sec.id === section.id)
                     ? "text-red-600 hover:text-red-700 "

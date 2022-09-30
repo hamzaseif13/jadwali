@@ -31,4 +31,5 @@ interface Options {
   courses: string[];
   minNumOfDays: number;
   days: string;
+  pinnedSections:Section[]
 }

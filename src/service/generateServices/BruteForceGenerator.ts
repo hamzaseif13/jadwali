@@ -68,20 +68,23 @@ export abstract class Generator {
   private checkIfActiveOrFull(schedule: Section[]) {
     let validSchedule = true;
     schedule.forEach((section) => {
-      if (
-        section.status.toLowerCase() == "cancelled" 
-      )
-      
-        validSchedule = false;
+      if (section.status.toLowerCase() == "cancelled") validSchedule = false;
     });
     return validSchedule;
+  }
+  protected checkIfMeetsPinned(schedule: Section[]): boolean {
+    const pinnedIds = this.options.pinnedSections.map((section) => section.id);
+    return pinnedIds.every((id) =>
+      schedule.map((section) => section.id).includes(id)
+    );
   }
   protected scheduleIsValid(schedule: Section[]): boolean {
     return (
       this.checkDaysValidation(schedule) &&
       this.checkTimeValidation(schedule) &&
       this.checkForConflicts(schedule) &&
-      this.checkIfActiveOrFull(schedule)
+      this.checkIfActiveOrFull(schedule) 
+      
     );
   }
   /**
@@ -196,7 +199,7 @@ export class BruteForceGenerator extends Generator {
    * brute force generator that uses backtracking
    */
   private getAllCombinations(sections: Section[][]): Section[][] {
-    const result: any = [];
+    const result: Section[][] = [];
     const backtrack = (i: number, state: Section[]) => {
       if (!this.scheduleIsValid(state)) {
         return;
@@ -212,7 +215,7 @@ export class BruteForceGenerator extends Generator {
       }
     };
     backtrack(0, []);
-    return result;
+    return result.filter((schedule) => this.checkIfMeetsPinned(schedule));
   }
   /**
    * generates schedules

@@ -13,7 +13,7 @@ function Options() {
     startTime,
     endTime,
     days,loading,
-    dispatch,
+    dispatch,pinnedSections
   } = useContext(JadwaliContext);
   const courses = [];
   registeredCourses.forEach((course) => {
@@ -27,7 +27,7 @@ function Options() {
       minNumberOfDays,
       startTime,
       endTime,
-      days
+      days,pinnedSections
     );
 
     const availableSchedules = results.filter((schedule) => {

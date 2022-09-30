@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import FeedBack from './pages/FeedBack';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
+import AboutUs from './pages/AboutUs';
 function App() {
   return (
     <>
@@ -19,6 +19,9 @@ function App() {
             <Route path='/' excat element={<Home />} />
             <Route path='/generate' element={<Generator />} />
             <Route path='/feedback' element={<FeedBack />} />
+            <Route path='/aboutus' element={<AboutUs />} />
+            
+
           </Routes>
         </Router>
       </JadwaliProvider>

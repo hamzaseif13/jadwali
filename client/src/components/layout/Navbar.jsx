@@ -65,10 +65,16 @@ function Navbar() {
             </Link>
           </li>
           <li className="block py-2 md:py-0 md:px-4 hover:text-gray-50">
+            <Link to="/aboutus">
+              <span className="">About us</span>
+            </Link>
+          </li>
+          <li className="block py-2 md:py-0 md:px-4 hover:text-gray-50">
             <Link to="/generate">
               <span className="text-gray-300">Generate</span>
             </Link>
           </li>
+          
         </ul>
       </div>
     </nav>
