@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.hour30 {
+  height: 4.5rem;
+}
+.start85 {
+  top: 2.7rem;
+}
+.start90 {
+  top: 4.2rem;
+}
+.start95 {
+  top: 5.7rem;
+}
+.start100 {
+  top: 7.2rem;
+}
+.start105 {
+  top: 8.7rem;
+}
+.start110 {
+  top: 10.2rem;
+}
+.start115 {
+  top: 11.7rem;
+}
+.start120 {
+  top: 13.2rem;
+}
+.start125 {
+  top: 14.7rem;
+}
+.start130 {
+  top: 16.2rem;
+}
+.start135 {
+  top: 17.7rem;
+}
+.start140 {
+  top: 19.2rem;
+}
+.start145 {
+  top: 20.7rem;
+}
+.start150 {
+  top: 22.2rem;
+}
+.start155 {
+  top: 23.7rem;
+}
+.start160 {
+  top: 25.2rem;
+}
+.start165 {
+  top: 26.7rem;
+}
+.start170 {
+  top: 28.2rem;
+}
+.start175 {
+  top: 29.7rem;
+}
+.start180 {
+  top: 31.2rem;
+}
+.height10 {
+  height: 3rem;
+}
+.height15 {
+  height: 4.5rem;
+}
+.height20 {
+  height: 6rem;
+}
+.height25 {
+  height: 7.5rem;
+}
+.height30 {
+  height: 9rem;
+}
+.height35 {
+  height: 10.5rem;
+}
+.height40 {
+  height: 12rem;
+}
+.height45 {
+  height: 13.5rem;
+}
+.height50 {
+  height: 15rem;
+}
+.height55 {
+  height: 16.5rem;
+}
+html {
+  scroll-behavior: smooth;
+}
+.fully-bleed {
+  box-shadow: 0 0 0 100vmax #1E293B;
+  clip-path: inset(0 -100vmax);
+}
