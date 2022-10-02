@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.30a05382.css",
-    "main.js": "/static/js/main.facc9f5d.js",
+    "main.css": "/static/css/main.75258290.css",
+    "main.js": "/static/js/main.17dc2d33.js",
+    "static/media/jadwali.mp4": "/static/media/jadwali.5e5021e246f1577cc074.mp4",
     "static/media/hamza.jpg": "/static/media/hamza.f090b195485e5db6a3b5.jpg",
     "static/media/searchAnif4.gif": "/static/media/searchAnif4.89abe4e2f7072d11cd4e.gif",
+    "static/media/linkedinlogo.png": "/static/media/linkedinlogo.66ffd29ac1bb3de67249.png",
     "static/media/sch2.png": "/static/media/sch2.16ce822f691fcd31b40d.png",
     "static/media/mohaden.jpg": "/static/media/mohaden.318606e9c7849716e4fe.jpg",
     "static/media/filter.png": "/static/media/filter.e29057ade3f321e6b930.png",
     "index.html": "/index.html",
-    "main.30a05382.css.map": "/static/css/main.30a05382.css.map",
-    "main.facc9f5d.js.map": "/static/js/main.facc9f5d.js.map"
+    "main.75258290.css.map": "/static/css/main.75258290.css.map",
+    "main.17dc2d33.js.map": "/static/js/main.17dc2d33.js.map"
   },
   "entrypoints": [
-    "static/css/main.30a05382.css",
-    "static/js/main.facc9f5d.js"
+    "static/css/main.75258290.css",
+    "static/js/main.17dc2d33.js"
   ]
 }
