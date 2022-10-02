@@ -1,5 +1,7 @@
 import React from "react";
 import mohaden from "../assests/mohaden.jpg";
+import hamza from "../assests/hamza.jpg";
+
 function AboutUs() {
   
   return (
@@ -9,9 +11,9 @@ function AboutUs() {
           <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our team</h2>
           <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
       </div> 
-      <div class="flex justify-center md:space-x-10 flex-col md:flex-row space-y-4">
+      <div class="flex justify-center md:space-x-10 items-center flex-col md:flex-row space-y-4     md:space-y-0">
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar"/>
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src={hamza}alt="hamza seif"/>
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   <a href="#">Hamza Seif</a>
               </h3>
@@ -40,11 +42,11 @@ function AboutUs() {
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src={mohaden} alt="Helene Avatar"/>
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src={mohaden}alt="hamza seif"/>
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   <a href="#">Mohammad Saad</a>
               </h3>
-              <p>Network and Security Engineer</p>
+              <p>Network Engineering and Security</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
