@@ -6,14 +6,13 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
 import Container from "./Home/Container";
-
+import jadwali from '../assests/jadwali.mp4';
 function Home() {
   document.title="Jadwali | Home";
   return (
     <div className=" bg-slate-900 pb-20 sm:mx-10 lg:mx-20 ">
-      <section className="bg-gray-900 ">
-        <div className="gap-8 items-center py-2 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-          
+      <section className=" ">
+        <div className="gap-8 items-center py-2 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">          
           <div className="mt-4 md:mt-0">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold  text-white">
               Setting your Schedule has never been easier.
@@ -25,7 +24,7 @@ function Home() {
               do the rest, it will also filter schedules with closed sections.
             </p>
             <Link to="/generate">
-              <button className="mb-3 inline-flex items-center bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-primary-900">
+              <button className="inline-flex items-center mb-8 bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-primary-900">
                 Get started
                 <svg
                   className="ml-2 -mr-1 w-5 h-5"
@@ -40,9 +39,13 @@ function Home() {
               </button>
             </Link>
           </div>
-          <iframe className="w-full rounded min-h-[30rem]"src="https://www.youtube.com/embed/yhRrZrSJVpg?autoplay=1" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           
-        </div>
+
+            <video className="w-full border border-slate-800 shadow-lg rounded" controls muted autoPlay>
+              <source src={jadwali} type="video/mp4"/>
+            </video>
+          </div>
+        
       </section>
 
       <div 
