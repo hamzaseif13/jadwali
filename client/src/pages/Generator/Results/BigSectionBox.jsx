@@ -1,11 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Modal from "./Modal";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 function BigSectionBox({ course, section }) {
+  const [similarSections, setSimilarSections] = useState([]);
+  useEffect(() => {
+    const fetchSections = async () => {
+      const data = await fetch(`/api/v1/sections/${course.lineNumber}?similar=1&sectionString=${section.days+section.startTime+section.endTime}`);
+      const d = await data.json();
+      d.sort((a, b) => a.number - b.number);
+      setSimilarSections(d);
+    };
+    fetchSections();
+  }, [course]);
   const {  pinnedSections } = useContext(JadwaliContext);
   let { startTime, endTime } = section;
   let color = course.color;
+  let similarSectionsStyle=similarSections.length>1?"":"outline outline-offset-2 outline-1";
   const [modalOpen, setModalOpen] = React.useState(false)
+
   const doubleToStringTime = (time) => {
     const str = time.toString().split(".");
     let hours = str[0];
@@ -18,20 +30,21 @@ function BigSectionBox({ course, section }) {
   }  w-full  
 border-l-[6px] border rounded-t rounded-l  height${
     (endTime - startTime) * 10
-  } h-100 overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0 ${emptySeats<=0?"bg-[#806b6b]":"bg-gray-500"}`;
+  } h-100 ${similarSectionsStyle} z-10 overflow-clip px-[1px] text-ellipsis md:text-base ${color} border-t-0 border-b-gray-700 border-r-0 ${emptySeats<=0?"bg-[#806b6b]":"bg-gray-500"}`;
   return (
     <div onClick={() => setModalOpen(true)} className={style}>
         {pinnedSections.some(sec=>sec.id===section.id)&&
-      <div className='w-4 rounded-full h-4 bg-yellow-500 absolute -top-1 -right-1'>
+      <div className='w-4 rounded-full h-4 bg-yellow-500 absolute -top-1 -right-1  '>
       </div>
       }
+      
       <div className="">
         {modalOpen && (
           <Modal
           
           modalOpen={modalOpen} close={()=>setModalOpen(false)}
             section={section}
-            course={course}
+            course={course} similarSections={similarSections}
           />
         )}
         <div className="">

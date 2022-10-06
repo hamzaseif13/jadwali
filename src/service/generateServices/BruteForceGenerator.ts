@@ -189,6 +189,19 @@ export abstract class Generator {
     // console.log(obj);
     return obj;
   }
+  protected sortByDays(schedules: Section[][]) {
+      for (let schedule of schedules){
+          schedule.sort((a: Section, b: Section) => {
+              return this.getDayScore(a) - this.getDayScore(b);
+          });
+      }
+  }
+   private getDayScore(section:Section):number{
+      let score =0
+      score+=section.days.includes("mon")? -2:2
+      score+=section.days.includes("wed")? -2:2
+      return score
+   }
 }
 
 export class BruteForceGenerator extends Generator {
@@ -201,10 +214,10 @@ export class BruteForceGenerator extends Generator {
   private getAllCombinations(sections: Section[][]): Section[][] {
     const result: Section[][] = [];
     const backtrack = (i: number, state: Section[]) => {
-      if (!this.scheduleIsValid(state)) {
+      if (!this.scheduleIsValid(state)||result.length > 1000) {
         return;
       }
-      if (state.length === sections.length) {
+      if (state.length === sections.length || result.length > 1000000) {
         result.push(state);
         return;
       }
@@ -217,19 +230,42 @@ export class BruteForceGenerator extends Generator {
     backtrack(0, []);
     return result.filter((schedule) => this.checkIfMeetsPinned(schedule));
   }
+  private compressSections(sections: Section[][]): Section[][] {
+    const compressedSections:Section[][]=[]
+    for(let courseSections of sections){
+        let visited:string[]=[]
+        let newSections:Section[]=[]
+        courseSections.forEach(section=>{
+          if(!visited.includes(`${section.startTime}${section.endTime}${section.days}`)){
+            visited.push(`${section.startTime}${section.endTime}${section.days}`)
+            newSections.push(section)
+          }
+        })
+        compressedSections.push(newSections)
+    }
+
+    return compressedSections
+  }
   /**
    * generates schedules
    * @param sections sections to generate the schedules from
    * @returns a promise of final schedules
    */
   public generate(sections: Section[][]) {
+    
     this._sections = sections.filter((section) => section.length > 0);
+    this._sections= this.compressSections(this._sections);
+    let possiableCombinationCount=1;
+    this._sections.forEach(section=>possiableCombinationCount*=section.length);
+    console.log('possiable combinations : ',possiableCombinationCount) 
     console.time("generate time");
+    this.sortByDays(this._sections);
     const filteredSchedules: Section[][] = this.getAllCombinations(
       this._sections
     );
     this.sortByScore(filteredSchedules);
     console.timeEnd("generate time");
+    console.log('possible schedules',filteredSchedules.length);
     return filteredSchedules.slice(0, 100);
   }
 }

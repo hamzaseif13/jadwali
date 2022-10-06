@@ -9,14 +9,12 @@ const generateService = async (req: Request, res: Response) => {
   
   const options:Options=req.body.options
   //req.params.id=='1'?averageCase:intensiveCase;
-  const sections = await Generator.fetchSections(options.courses);
+  const sections:Section[][] = await Generator.fetchSections(options.courses);
   const generator =new BruteForceGenerator(options)
-  let possiableCombinationCount=1;
-  sections.forEach(section=>possiableCombinationCount*=section.length);
   
- 
-  //const course = await courseRepo.find({ where:{symbol:"SE324"},relations:["sections"]});
+  
   try {
+    
     res.json(generator.generate(sections));
   } catch (error) {
     res.json(error)

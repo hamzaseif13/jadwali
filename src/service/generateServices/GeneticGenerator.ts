@@ -36,4 +36,7 @@ class Schedule {
   public toString(): string {
     return `fitness : ${this.fitness} : [sections = ${this.sections}]`;
   }
+  private checkConflicts(): boolean {
+    return false;
+  }
 }
