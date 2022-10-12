@@ -4,3 +4,4 @@ dist
 
 /src/mongoCourse.ts
 /connect.sh
+/Dockerfile

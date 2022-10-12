@@ -35,9 +35,7 @@ function SmallSectionBox({ course, section }) {
         text-mylight sm:text-center sm:text-lg ">
           {course.symbol.toUpperCase()}
         </h1>
-        <h1 className="absolute text-white bg-red-500 rounded  top-2 left-16">
-          12
-        </h1>
+        
         {modalOpen && (
           <Modal
           
