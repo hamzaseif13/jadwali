@@ -8,6 +8,7 @@ import FeedBack from './pages/FeedBack';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AboutUs from './pages/AboutUs';
+import FreeHall from './pages/FreeHall/FreeHall';
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
             <Route path='/generate' element={<Generator />} />
             <Route path='/feedback' element={<FeedBack />} />
             <Route path='/aboutus' element={<AboutUs />} />
+            <Route path='/free-hall' element={<FreeHall />} />
             
 
           </Routes>
