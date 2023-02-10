@@ -1,7 +1,7 @@
 import React from "react";
-import mohaden from "../assests/mohaden.jpg";
-import hamza from "../assests/hamza.jpg";
-import linkedinLogo from '../assests/linkedinlogo.png';
+import mohaden from "../assets/mohaden.jpg";
+import hamza from "../assets/hamza.jpg";
+import linkedinLogo from '../assets/linkedinlogo.png';
 function AboutUs() {
   
   return (

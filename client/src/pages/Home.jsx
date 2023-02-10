@@ -1,12 +1,12 @@
 
-import gif from "../assests/searchAnif4.gif";
-import filter from "../assests/filter.png";
-import schedule from "../assests/sch2.png";
+import gif from "../assets/searchAnif4.gif";
+import filter from "../assets/filter.png";
+import schedule from "../assets/sch2.png";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
 import Container from "./Home/Container";
-import jadwali from '../assests/jadwali.mp4';
+import jadwali from '../assets/jadwali.mp4';
 function Home() {
   document.title="Jadwali | Home";
   return (
