@@ -214,7 +214,7 @@ export class BruteForceGenerator extends Generator {
   private getAllCombinations(sections: Section[][]): Section[][] {
     const result: Section[][] = [];
     const backtrack = (i: number, state: Section[]) => {
-      if (!this.scheduleIsValid(state)||result.length > 1000) {
+      if (!this.scheduleIsValid(state)||result.length > 100000) {
         return;
       }
       if (state.length === sections.length || result.length > 1000000) {
@@ -266,6 +266,6 @@ export class BruteForceGenerator extends Generator {
     this.sortByScore(filteredSchedules);
     console.timeEnd("generate time");
     console.log('possible schedules',filteredSchedules.length);
-    return filteredSchedules.slice(0, 100);
+    return filteredSchedules.slice(0, 10000);
   }
 }
