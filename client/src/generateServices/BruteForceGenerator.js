@@ -242,9 +242,9 @@ export class BruteForceGenerator extends Generator {
     generate(sections) {
         this._sections = sections.filter((section) => section.length > 0);
         this._sections = this.compressSections(this._sections);
-        let possiableCombinationCount = 1;
-        this._sections.forEach(section => possiableCombinationCount *= section.length);
-        console.log('possiable combinations : ', possiableCombinationCount);
+        let possibleCombinationCount = 1;
+        this._sections.forEach(section => possibleCombinationCount *= section.length);
+        console.log('possible combinations : ', possibleCombinationCount);
         console.time("generate time");
         this.sortByDays(this._sections);
         const filteredSchedules = this.getAllCombinations(this._sections);
