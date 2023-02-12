@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import JadwaliContext from "../context/jadwaliContext/JadwaliContext";
-import { fetchSchedules } from "../context/jadwaliContext/JadwaliActions";
+import { balanceScheduleGenerator } from "../context/jadwaliContext/JadwaliActions";
 
 function useGenerate() {
   const {
@@ -16,7 +16,7 @@ function useGenerate() {
     console.log(newpinned)
     if (registeredCourses.length === 0) return;
     dispatch({ type: "SET_LOADING", payload: true });
-    const results = await fetchSchedules(
+    const results = await balanceScheduleGenerator(
       registeredCourses.map((c) => c.lineNumber),
       minNumberOfDays,
       startTime,

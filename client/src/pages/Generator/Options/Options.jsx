@@ -5,7 +5,7 @@ import TimeRange from "./TimeRange";
 import JadwaliContext from "../../../context/jadwaliContext/JadwaliContext";
 import { useContext } from "react";
 import Loading from "../../../components/layout/Loading";
-import {fetchSchedules} from '../../../context/jadwaliContext/JadwaliActions'
+import {balanceScheduleGenerator} from '../../../context/jadwaliContext/JadwaliActions'
 function Options() {
   const {
     registeredCourses,
@@ -22,7 +22,7 @@ function Options() {
   const generate = async () => {
     if (registeredCourses.length === 0) return;
     dispatch({ type: "SET_LOADING", payload: true });
-    const results = await fetchSchedules(
+    const results = await balanceScheduleGenerator(
       registeredCourses.map((c) => c.lineNumber),
       minNumberOfDays,
       startTime,
