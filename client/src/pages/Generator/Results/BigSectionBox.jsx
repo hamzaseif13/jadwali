@@ -5,7 +5,7 @@ function BigSectionBox({ course, section }) {
   const [similarSections, setSimilarSections] = useState([]);
   useEffect(() => {
     const fetchSections = async () => {
-      const data = await fetch(`/api/v1/sections/${course.lineNumber}?similar=1&sectionString=${section.days+section.startTime+section.endTime}`);
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/sections/${course.lineNumber}?similar=1&sectionString=${section.days+section.startTime+section.endTime}`);
       const d = await data.json();
       d.sort((a, b) => a.number - b.number);
       setSimilarSections(d);

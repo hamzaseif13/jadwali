@@ -28,7 +28,7 @@ function AddCourses() {
     });
     dispatch({type:"SET_PINNED_SECTIONS",payload:JSON.parse(localStorage.getItem("pinnedSections"))||[]})
     const fetchDate = async () => {
-      const date = await fetch("/api/v1/last_updated");
+      const date = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/last_updated`);
       const dateJson = await date.json();
       let seconds = Math.floor(dateJson.milliseconds / 1000);
       let minutes = Math.floor(seconds / 60);

@@ -24,7 +24,7 @@ function Modal({ close, modalOpen, course }) {
   };
   useEffect(() => {
     const fetchSections = async () => {
-      const data = await fetch(`/api/v1/sections/${course.lineNumber}`);
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/sections/${course.lineNumber}`);
       const d = await data.json();
       d.sort((a, b) => a.number - b.number);
       setSections(d);

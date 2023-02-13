@@ -29,7 +29,7 @@ const fetchSchedules = async (
   return results;
 };
 export const fetchSections = async (lineNumber) => {
-  const data = await fetch(`/api/v1/sections/${lineNumber}`);
+  const data = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/sections/${lineNumber}`);
   const d = await data.json();
   d.sort((a, b) => a.number - b.number);
   return d;
