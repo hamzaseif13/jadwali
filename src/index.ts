@@ -1,4 +1,5 @@
 import { AppDataSource } from "./config/DataSource";
+// @ts-ignore
 import cors from 'cors'
 import express, { Express } from "express";
 import path from 'path'
