@@ -14,7 +14,7 @@ e.preventDefault()
     const emailData = email.current.value;
     const messageData = message.current.value;
     const subjectData = subject.current.value;
-    fetch("/api/v1/feedback", {
+    fetch(process.env.REACT_APP_API_URL+"/api/v1/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
