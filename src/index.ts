@@ -28,4 +28,8 @@ app.use(feedbackRouter);
 app.use(sectionsRouter);
 app.use(lastUpdatedRouter);
 
+app.get("/", (req, res) => {
+  res.redirect(301, "https://mango-field-0a8429b10.3.azurestaticapps.net/");
+});
+
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
